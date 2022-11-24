@@ -17,15 +17,14 @@ public class MenuController extends Controller<Menu> {
     @Override
     public void step(MainGame game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
-            case UP:
+            case ROTATE:
                 getModel().previousSelections();
                 break;
             case DOWN:
                 getModel().nextSelection();
+                break;
             case SELECT:
-                if(getModel().isSelectedExit()) {
-                    //Game state set to null to end gameplay loop.
-                }
+                if(getModel().isSelectedExit()) game.setState(null);
                 if (getModel().isSelectedStart()) {
                     //Game state set to start a new game
                 }
