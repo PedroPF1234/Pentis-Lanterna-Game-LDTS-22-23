@@ -3,7 +3,7 @@
 Following up on one of the most successful video games in all history, Tetris comes back stronger than ever. 
 With all new desgin and shapes, a challenge is guaranteed to be presented before you.
  
-This project was developed by *Pedro Fonseca* (*up202108653*@fe.up.pt) and *Jorge Restivo* (*up202108000*@fe.up.pt)
+This project was developed by *Pedro Fonseca* (*up202108653*@fe.up.pt) and *Jorge Restivo* (*up202108886*@fe.up.pt)
 for LPOO 2022/23.
 
 ### IMPLEMENTED FEATURES
