@@ -43,9 +43,8 @@ public class MainGame {
                 throw new RuntimeException(e);
             }
             gui.clear();
-            gui.drawText(new Position(10,5), String.valueOf(System.currentTimeMillis()), "#FFFFFF");
+            gui.drawText(new Position(13,9), String.valueOf(System.currentTimeMillis()), "#FFFFFF");
             gui.refresh();
-      //}
         }
     }
 }
