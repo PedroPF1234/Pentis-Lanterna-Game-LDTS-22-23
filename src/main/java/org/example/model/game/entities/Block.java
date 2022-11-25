@@ -2,7 +2,7 @@ package org.example.model.game.entities;
 
 import org.example.model.Position;
 
-public abstract class Block {
+public class Block {
 
     private Position position;
 
@@ -13,6 +13,10 @@ public abstract class Block {
     public void setPosition(int x, int y) {
         this.position.setX(x);
         this.position.setY(y);
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public Position getPosition() {

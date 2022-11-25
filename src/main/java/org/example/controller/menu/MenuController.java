@@ -2,7 +2,10 @@ package org.example.controller.menu;
 
 import org.example.MainGame;
 import org.example.controller.Controller;
+import org.example.gamestate.GameState;
 import org.example.gui.GUI;
+
+import org.example.model.game.window.WindowBuilderLoader;
 import org.example.model.menu.Menu;
 
 import java.io.IOException;
@@ -25,9 +28,7 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if(getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedStart()) {
-                    //Game state set to start a new game
-                }
+                if (getModel().isSelectedStart()) game.setState(new GameState(new WindowBuilderLoader().createWindow()));
 
         }
     }

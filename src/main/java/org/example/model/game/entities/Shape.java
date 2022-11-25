@@ -1,17 +1,32 @@
 package org.example.model.game.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Shape extends Block{
 
     enum SHAPE {F, I, L, N, P, T, U, V, W, X, Y, Z, NONE}
-    private SHAPE selectedShape;
-    private List<Block> blocks;
+    private final SHAPE selectedShape;
+    private final List<Block> blocks;
 
     public Shape(int x, int y) {
         super(x,y);
         selectedShape = getNextShape();
+        this.blocks = constructShaper(selectedShape);
+
+    }
+
+    private List<Block> constructShaper(SHAPE selectedShape) {
+        List<Block> blocks = new ArrayList<>();
+        if (selectedShape == SHAPE.I) {
+            blocks.add(new Block(5, 5));
+            blocks.add(new Block(5, 6));
+            blocks.add(new Block(5, 7));
+            blocks.add(new Block(5, 8));
+            blocks.add(new Block(5, 9));
+        }
+        return blocks;
     }
 
     public SHAPE getNextShape() {

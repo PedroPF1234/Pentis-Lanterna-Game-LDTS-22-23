@@ -3,6 +3,7 @@ package org.example.gamestate;
 import org.example.Painter.Painter;
 import org.example.Painter.game.GamePainter;
 import org.example.controller.Controller;
+import org.example.controller.game.WindowController;
 import org.example.model.game.window.Window;
 
 public class GameState extends State<Window> {
@@ -17,6 +18,6 @@ public class GameState extends State<Window> {
 
     @Override
     protected Controller<Window> getController() {
-        return null;
+        return new WindowController(getModel());
     }
 }
