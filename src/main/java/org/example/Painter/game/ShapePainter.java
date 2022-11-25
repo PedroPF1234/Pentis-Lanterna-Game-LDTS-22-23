@@ -8,7 +8,7 @@ public class ShapePainter implements BlockPainter<Block> {
 
 
     @Override
-    public void draw(Block block, GUI gui) {
-            gui.drawBlock(block.getPosition());
+    public void draw(Block block, GUI gui, String blockColour) {
+            gui.drawBlock(block.getPosition(), blockColour);
     }
 }

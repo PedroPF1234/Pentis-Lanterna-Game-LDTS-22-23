@@ -69,10 +69,10 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawBlock(Position position) {
+    public void drawBlock(Position position, String blockColour) {
 
         TextGraphics tg = screen.newTextGraphics();
-        tg.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        tg.setBackgroundColor(TextColor.Factory.fromString(blockColour));
         tg.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(2, 1), ' ');
     }
 

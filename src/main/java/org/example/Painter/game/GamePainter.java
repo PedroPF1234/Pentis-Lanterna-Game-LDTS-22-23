@@ -14,16 +14,23 @@ public class GamePainter extends Painter<Window> {
 
     @Override
     public void drawEntities(GUI gui) {
-        drawShape(gui, getModel().getShape().getBlocks(), new ShapePainter());
+        drawShape(gui, getModel().getShape().getBlocks(), new ShapePainter(), getModel().getShape().getBlockColour());
+        drawWall(gui, getModel().getWalls(), new WallPainter());
     }
 
-    private <T extends Block> void drawShape(GUI gui, List<T> blocks, ShapePainter painter) {
-        for (Block block : blocks) {
-            drawBlock(gui, block, painter);
+    private void drawWall(GUI gui, List<Block> walls, WallPainter wallPainter) {
+        for (Block block : walls) {
+            drawBlock(gui, block, wallPainter, "#FFFFFF");
         }
     }
 
-    private <T extends Block> void drawBlock(GUI gui, T block, ShapePainter painter) {
-        painter.draw(block, gui);
+    private <T extends Block> void drawShape(GUI gui, List<T> blocks, ShapePainter shapePainter, String blockColour) {
+        for (Block block : blocks) {
+            drawBlock(gui, block, shapePainter, blockColour);
+        }
+    }
+
+    private <T extends BlockPainter> void drawBlock(GUI gui, Block block, T painter, String blockColour) {
+        painter.draw(block, gui, blockColour);
     }
 }

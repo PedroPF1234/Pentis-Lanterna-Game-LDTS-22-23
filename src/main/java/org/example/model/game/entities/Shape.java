@@ -6,15 +6,39 @@ import java.util.Random;
 
 public class Shape extends Block{
 
-    enum SHAPE {F, I, L, S, P, T, U, V, W, X, Y, Z, NONE,FM,LM,SM,PM,YM,ZM}
-    private final SHAPE selectedShape;
+    enum SHAPE {F, I, L, S, P, T, U, V, W, X, Y, Z, FM, LM, SM, PM, YM, ZM, NONE}
     private final List<Block> blocks;
+
+    private final String blockColour;
 
     public Shape(int x, int y) {
         super(x,y);
-        selectedShape = getNextShape();
+        SHAPE selectedShape = getNextShape();
         this.blocks = constructShape(selectedShape);
+        this.blockColour = getColourOfShape(selectedShape);
 
+    }
+
+    private String getColourOfShape(SHAPE selectedShape) {
+        if (selectedShape == SHAPE.F) return "#8B0000";
+        if (selectedShape == SHAPE.I) return "#FFA07A";
+        if (selectedShape == SHAPE.L) return "#FFC0CB";
+        if (selectedShape == SHAPE.S) return "#FF8C00";
+        if (selectedShape == SHAPE.P) return "#FFFF00";
+        if (selectedShape == SHAPE.T) return "#BDB76B";
+        if (selectedShape == SHAPE.U) return "#663399";
+        if (selectedShape == SHAPE.V) return "#191970";
+        if (selectedShape == SHAPE.W) return "#8B4513";
+        if (selectedShape == SHAPE.X) return "#4682B4";
+        if (selectedShape == SHAPE.Y) return "#EE82EE";
+        if (selectedShape == SHAPE.Z) return "#00FF00";
+        if (selectedShape == SHAPE.FM) return "#DC143C";
+        if (selectedShape == SHAPE.LM) return "#FF1493";
+        if (selectedShape == SHAPE.SM) return "#FF4500";
+        if (selectedShape == SHAPE.PM) return "#FAFAD2";
+        if (selectedShape == SHAPE.YM) return "#FF00FF";
+        if (selectedShape == SHAPE.ZM) return "#90EE90";
+        return null;
     }
 
     private List<Block> constructShape(SHAPE selectedShape) {
@@ -90,67 +114,67 @@ public class Shape extends Block{
             blocks.add(new Block(4, 7));
         }
         if (selectedShape == SHAPE.Y) {
-            blocks.add(new Block(5, 5));
-            blocks.add(new Block(5, 6));
-            blocks.add(new Block(3, 6));
-            blocks.add(new Block(1, 6));
-            blocks.add(new Block(7, 6));
+            blocks.add(new Block(4, 5));
+            blocks.add(new Block(4, 6));
+            blocks.add(new Block(2, 6));
+            blocks.add(new Block(0, 6));
+            blocks.add(new Block(6, 6));
         }
         if (selectedShape == SHAPE.Z) {
-            blocks.add(new Block(5, 5));
-            blocks.add(new Block(7, 5));
-            blocks.add(new Block(7, 6));
-            blocks.add(new Block(7, 7));
-            blocks.add(new Block(9, 7));
+            blocks.add(new Block(4, 5));
+            blocks.add(new Block(6, 5));
+            blocks.add(new Block(6, 6));
+            blocks.add(new Block(6, 7));
+            blocks.add(new Block(8, 7));
         }
         if (selectedShape == SHAPE.FM) {
-            blocks.add(new Block(5, 5));
-            blocks.add(new Block(3, 5));
-            blocks.add(new Block(5, 6));
-            blocks.add(new Block(7, 6));
-            blocks.add(new Block(5, 7));
+            blocks.add(new Block(4, 5));
+            blocks.add(new Block(2, 5));
+            blocks.add(new Block(4, 6));
+            blocks.add(new Block(6, 6));
+            blocks.add(new Block(4, 7));
         }
         if (selectedShape == SHAPE.LM) {
-            blocks.add(new Block(5, 5));
-            blocks.add(new Block(5, 6));
-            blocks.add(new Block(5, 7));
-            blocks.add(new Block(5, 8));
-            blocks.add(new Block(3, 8));
+            blocks.add(new Block(4, 5));
+            blocks.add(new Block(4, 6));
+            blocks.add(new Block(4, 7));
+            blocks.add(new Block(4, 8));
+            blocks.add(new Block(2, 8));
         }
         if (selectedShape == SHAPE.SM) {
-            blocks.add(new Block(5, 5));
-            blocks.add(new Block(7, 5));
-            blocks.add(new Block(7, 6));
-            blocks.add(new Block(9, 6));
-            blocks.add(new Block(11, 6));
+            blocks.add(new Block(4, 5));
+            blocks.add(new Block(4, 5));
+            blocks.add(new Block(6, 6));
+            blocks.add(new Block(8, 6));
+            blocks.add(new Block(10, 6));
         }
         if (selectedShape == SHAPE.PM) {
-            blocks.add(new Block(5, 5));
-            blocks.add(new Block(7, 5));
-            blocks.add(new Block(5, 6));
-            blocks.add(new Block(7, 6));
-            blocks.add(new Block(7, 7));
+            blocks.add(new Block(4, 5));
+            blocks.add(new Block(6, 5));
+            blocks.add(new Block(4, 6));
+            blocks.add(new Block(6, 6));
+            blocks.add(new Block(6, 7));
         }
         if (selectedShape == SHAPE.YM) {
-            blocks.add(new Block(5, 5));
-            blocks.add(new Block(5, 6));
-            blocks.add(new Block(3, 6));
-            blocks.add(new Block(7, 6));
-            blocks.add(new Block(9, 6));
+            blocks.add(new Block(4, 5));
+            blocks.add(new Block(4, 6));
+            blocks.add(new Block(2, 6));
+            blocks.add(new Block(6, 6));
+            blocks.add(new Block(8, 6));
         }
         if (selectedShape == SHAPE.ZM) {
-            blocks.add(new Block(5, 5));
-            blocks.add(new Block(3, 5));
-            blocks.add(new Block(3, 6));
-            blocks.add(new Block(3, 7));
-            blocks.add(new Block(1, 7));
+            blocks.add(new Block(4, 5));
+            blocks.add(new Block(2, 5));
+            blocks.add(new Block(2, 6));
+            blocks.add(new Block(2, 7));
+            blocks.add(new Block(0, 7));
         }
         return blocks;
     }
 
     public SHAPE getNextShape() {
         Random random = new Random();
-        int randomShape = random.nextInt(19);
+        int randomShape = random.nextInt(18);
 
         if (randomShape == 0) return SHAPE.Z;
         if (randomShape == 1) return SHAPE.F;
@@ -175,6 +199,10 @@ public class Shape extends Block{
 
     public List<Block> getBlocks() {
         return blocks;
+    }
+
+    public String getBlockColour() {
+        return blockColour;
     }
 
     public void downShape() {

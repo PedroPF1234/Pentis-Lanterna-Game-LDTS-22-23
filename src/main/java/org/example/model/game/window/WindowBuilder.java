@@ -1,6 +1,10 @@
 package org.example.model.game.window;
 
+import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
+import org.example.model.game.entities.Wall;
+
+import java.util.List;
 
 public abstract class WindowBuilder {
     
@@ -8,13 +12,17 @@ public abstract class WindowBuilder {
         Window window = new Window(getWidth(), getHeight());
         
         window.setShape(createShaper());
-        //Set Walls of Window
+        window.setWall(createWalls());
 
 
         return window;
     }
 
     protected abstract Shape createShaper();
+
+    protected abstract List<Shape> createShapes();
+
+    protected abstract List<Block> createWalls();
 
     protected abstract int getWidth();
 
