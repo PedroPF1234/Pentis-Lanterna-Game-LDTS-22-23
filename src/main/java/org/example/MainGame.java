@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.gamestate.GameState;
 import org.example.gamestate.State;
 import org.example.gamestate.MenuState;
 import org.example.gui.LanternaGUI;

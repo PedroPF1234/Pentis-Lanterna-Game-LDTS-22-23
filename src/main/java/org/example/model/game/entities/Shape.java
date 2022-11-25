@@ -12,7 +12,7 @@ public class Shape extends Block{
 
     public Shape(int x, int y) {
         super(x,y);
-        selectedShape = SHAPE.X;
+        selectedShape = getNextShape();
         this.blocks = constructShape(selectedShape);
 
     }
@@ -177,7 +177,11 @@ public class Shape extends Block{
         return blocks;
     }
 
-    //Metodo de o fazer cair a cada x segundos ou loops
+    public void downShape() {
+        for (Block block : blocks) {
+            block.setPosition(block.getPosition().getX(), block.getPosition().getY() + 1);
+        }
+    }
 
     //Metodo de colisoes
 
