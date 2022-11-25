@@ -67,7 +67,7 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawShape(Position position) {
+    public void drawBlock(Position position) {
 
     }
 

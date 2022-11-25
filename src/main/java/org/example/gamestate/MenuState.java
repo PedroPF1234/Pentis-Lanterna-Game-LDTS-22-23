@@ -1,10 +1,9 @@
 package org.example.gamestate;
 
-import org.example.Painter.Menu.MenuPainter;
+import org.example.Painter.menu.MenuPainter;
 import org.example.Painter.Painter;
 import org.example.controller.Controller;
 import org.example.controller.menu.MenuController;
-import org.example.gamestate.State;
 import org.example.model.menu.Menu;
 
 public class MenuState extends State<Menu> {

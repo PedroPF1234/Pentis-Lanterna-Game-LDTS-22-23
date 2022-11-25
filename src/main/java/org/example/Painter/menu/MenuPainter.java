@@ -1,4 +1,4 @@
-package org.example.Painter.Menu;
+package org.example.Painter.menu;
 
 import org.example.Painter.Painter;
 import org.example.gui.GUI;

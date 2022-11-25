@@ -1,7 +1,11 @@
-## LPOO_1608 - Tetris Expanded
+## LPOO_1608 - Pentis
 
-Following up on one of the most successful video games in all history, Tetris comes back stronger than ever. 
-With all new desgin and shapes, a challenge is guaranteed to be presented before you.
+Following up on one of the most successful video games in all history, Pentis surges forward to claim its own spot along
+its small brother Tetris as one of the greatest of all time.
+With all new desgin and shape, a challenge is guaranteed to be presented before you.
+
+But there's more. Besides hold more than twice the amount of shape presented than in Tetris, the big brother also
+gives you the opportunity to call onto Miss Luck and switch the playing shape once everytime a new round starts.
  
 This project was developed by *Pedro Fonseca* (*up202108653*@fe.up.pt) and *Jorge Restivo* (*up202108886*@fe.up.pt)
 for LPOO 2022/23.
@@ -16,8 +20,8 @@ for LPOO 2022/23.
 - **Points Mechanic** - The player will be awarded points every time they clear a line, "survive" another round, 
 increasing in value the longer the player has survived.
 - **HighScore Mechanic** - A tab in the Main Menu where you can see the highest scorer 
+- **File To Save HighScore** - A file that saves the current highscores.
 - **Shape-Shifting** - The player will have the chance to switch the shape they're controlling once every round.
-- **Extra Shapes** - The player will be able to enjoy more Tetris shapes than contained in the original game.
 
 ### DESIGN
 

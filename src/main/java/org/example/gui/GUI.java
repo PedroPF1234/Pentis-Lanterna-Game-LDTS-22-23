@@ -8,7 +8,7 @@ public interface GUI {
 
     ACTION getNextAction() throws IOException;
 
-    void drawShape(Position position);
+    void drawBlock(Position position);
 
     void drawWall(Position position);
 
