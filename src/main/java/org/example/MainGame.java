@@ -14,7 +14,7 @@ public class MainGame {
 
 
     public MainGame() throws IOException {
-        this.gui = new LanternaGUI(40, 20);
+        this.gui = new LanternaGUI(100, 50);
         this.state = new MenuState(new Menu());
     }
 
@@ -28,7 +28,7 @@ public class MainGame {
 
 
     public void startGame() throws IOException {
-        final int FPS = 10;
+        final int FPS = 60;
         int frameTime = 1000/FPS;
 
       while (this.state != null) {

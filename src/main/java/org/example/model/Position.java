@@ -22,12 +22,12 @@ public class Position {
     }
 
     public Position getLeft() {
-        this.x--;
+        this.x = x - 2;
         return this;
     }
 
     public Position getRight() {
-        this.x++;
+        this.x = x + 2;
         return this;
     }
 }
