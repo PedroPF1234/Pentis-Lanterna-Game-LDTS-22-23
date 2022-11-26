@@ -22,4 +22,4 @@ for LPOO 2022/23.
 ### DESIGN
 
 The UML pattern is the following:
-![UML class diagram](img.png)
+![UML class diagram](docs/img.png)
