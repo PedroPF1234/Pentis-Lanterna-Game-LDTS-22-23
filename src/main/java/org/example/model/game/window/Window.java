@@ -3,7 +3,6 @@ package org.example.model.game.window;
 import org.example.model.Position;
 import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
-import org.example.model.game.entities.Wall;
 
 import java.util.List;
 
@@ -13,17 +12,11 @@ public class Window {
 
     private List<Shape> shapes;
 
-    private Shape shape;
-
     private List<Block> walls;
 
     public Window(int width, int height) {
         this.width = width;
         this.height = height;
-    }
-
-    public void setShape(Shape shape) {
-        this.shape = shape;
     }
 
     public void setShapes(List<Shape> shapes) {
@@ -38,8 +31,8 @@ public class Window {
         this.walls = walls;
     }
 
-    public Shape getShape() {
-        return shape;
+    public Shape getPlayingShape() {
+        return shapes.get(shapes.size() - 3);
     }
 
     public List<Block> getWalls() {
@@ -49,6 +42,7 @@ public class Window {
     public boolean isEmpty(Position position) {
         for (Block wall : walls) {
             if (wall.getPosition().equals(position)) return false;
+            //Condition to test against other shapes.
         }
         return true;
     }

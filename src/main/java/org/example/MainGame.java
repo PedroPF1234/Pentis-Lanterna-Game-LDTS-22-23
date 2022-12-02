@@ -14,7 +14,7 @@ public class MainGame {
 
 
     public MainGame() throws IOException {
-        this.gui = new LanternaGUI(28, 27);
+        this.gui = new LanternaGUI(50, 27);
         this.state = new MenuState(new Menu());
     }
 

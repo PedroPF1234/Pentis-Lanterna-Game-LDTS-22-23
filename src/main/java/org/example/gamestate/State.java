@@ -34,7 +34,7 @@ public abstract class State<T> {
         GUI.ACTION action = gui.getNextAction();
         controller.step(game, action, time);
         if (getModel() instanceof Window && time - timeSinceLastDown > 1000) {
-            ((Window) getModel()).getShape().downShape();
+            ((Window) getModel()).getPlayingShape().downShape();
             timeSinceLastDown = System.currentTimeMillis();
         }
         painter.draw(gui);

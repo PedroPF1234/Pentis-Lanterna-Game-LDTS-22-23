@@ -3,6 +3,7 @@ package org.example.Painter.game;
 import org.example.Painter.Painter;
 import org.example.gui.GUI;
 import org.example.model.game.entities.Block;
+import org.example.model.game.entities.Shape;
 import org.example.model.game.window.Window;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class GamePainter extends Painter<Window> {
 
     @Override
     public void drawEntities(GUI gui) {
-        drawShape(gui, getModel().getShape().getBlocks(), new ShapePainter(), getModel().getShape().getBlockColour());
+        drawShape(gui, getModel().getShapes(), new ShapePainter());
         drawWall(gui, getModel().getWalls(), new WallPainter());
     }
 
@@ -24,9 +25,12 @@ public class GamePainter extends Painter<Window> {
         }
     }
 
-    private <T extends Block> void drawShape(GUI gui, List<T> blocks, ShapePainter shapePainter, String blockColour) {
-        for (Block block : blocks) {
-            drawBlock(gui, block, shapePainter, blockColour);
+    private void drawShape(GUI gui, List<Shape> shapes, ShapePainter shapePainter) {
+        for (Shape shape : shapes) {
+            String blockColour = shape.getBlockColour();
+            for (Block block : shape.getBlocks()) {
+                drawBlock(gui, block, shapePainter, blockColour);
+            }
         }
     }
 

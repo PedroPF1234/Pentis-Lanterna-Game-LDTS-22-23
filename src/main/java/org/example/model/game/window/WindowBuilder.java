@@ -10,15 +10,13 @@ public abstract class WindowBuilder {
     
     public Window createWindow() {
         Window window = new Window(getWidth(), getHeight());
-        
-        window.setShape(createShaper());
+
+        window.setShapes(createShapes());
         window.setWall(createWalls());
 
 
         return window;
     }
-
-    protected abstract Shape createShaper();
 
     protected abstract List<Shape> createShapes();
 

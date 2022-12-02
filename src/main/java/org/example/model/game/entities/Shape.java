@@ -41,133 +41,135 @@ public class Shape extends Block{
         return null;
     }
 
+
+    //Need to change everything to depend on the Shapes's current position.
     private List<Block> constructShape(SHAPE selectedShape) {
         List<Block> blocks = new ArrayList<>();
         if (selectedShape == SHAPE.I) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(4, 7));
-            blocks.add(new Block(4, 8));
-            blocks.add(new Block(4, 9));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 3));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 4));
         }
         if (selectedShape == SHAPE.L) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(4, 7));
-            blocks.add(new Block(4, 8));
-            blocks.add(new Block(6, 8));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 3));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 3));
         }
         if (selectedShape == SHAPE.U) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(2, 5));
-            blocks.add(new Block(2, 6));
-            blocks.add(new Block(6, 5));
-            blocks.add(new Block(6, 6));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
         }
         if (selectedShape == SHAPE.T) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(2, 5));
-            blocks.add(new Block(6, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(4, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
         }
         if (selectedShape == SHAPE.P) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(6, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(6, 6));
-            blocks.add(new Block(4, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
         }
         if (selectedShape == SHAPE.F) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(6, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(2, 6));
-            blocks.add(new Block(4, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
         }
         if (selectedShape == SHAPE.S) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(6, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(2, 6));
-            blocks.add(new Block(0, 6));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY() + 1));
         }
         if (selectedShape == SHAPE.V) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(4, 7));
-            blocks.add(new Block(6, 7));
-            blocks.add(new Block(8, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY() + 2));
         }
         if (selectedShape == SHAPE.W) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(6, 6));
-            blocks.add(new Block(6, 7));
-            blocks.add(new Block(8, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY() + 2));
         }
         if (selectedShape == SHAPE.X) {
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(2, 6));
-            blocks.add(new Block(6, 6));
-            blocks.add(new Block(4, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
         }
         if (selectedShape == SHAPE.Y) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(2, 6));
-            blocks.add(new Block(0, 6));
-            blocks.add(new Block(6, 6));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
         }
         if (selectedShape == SHAPE.Z) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(6, 5));
-            blocks.add(new Block(6, 6));
-            blocks.add(new Block(6, 7));
-            blocks.add(new Block(8, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY() + 2));
         }
         if (selectedShape == SHAPE.FM) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(2, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(6, 6));
-            blocks.add(new Block(4, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
         }
         if (selectedShape == SHAPE.LM) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(4, 7));
-            blocks.add(new Block(4, 8));
-            blocks.add(new Block(2, 8));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 3));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 3));
         }
         if (selectedShape == SHAPE.SM) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(6, 6));
-            blocks.add(new Block(8, 6));
-            blocks.add(new Block(10, 6));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 6, this.getPosition().getY() + 1));
         }
         if (selectedShape == SHAPE.PM) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(6, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(6, 6));
-            blocks.add(new Block(6, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 2));
         }
         if (selectedShape == SHAPE.YM) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(4, 6));
-            blocks.add(new Block(2, 6));
-            blocks.add(new Block(6, 6));
-            blocks.add(new Block(8, 6));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY() + 1));
         }
         if (selectedShape == SHAPE.ZM) {
-            blocks.add(new Block(4, 5));
-            blocks.add(new Block(2, 5));
-            blocks.add(new Block(2, 6));
-            blocks.add(new Block(2, 7));
-            blocks.add(new Block(0, 7));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY() + 2));
         }
         return blocks;
     }
@@ -205,6 +207,8 @@ public class Shape extends Block{
         return blockColour;
     }
 
+    //Need to refactor this method to be called "updateShape".
+    //This will update the block's positions within "Shape" to fall in line with Shape's position.
     public void downShape() {
         for (Block block : blocks) {
             block.setPosition(block.getPosition().getX(), block.getPosition().getY() + 1);

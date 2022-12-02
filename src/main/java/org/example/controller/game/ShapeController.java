@@ -14,14 +14,14 @@ public class ShapeController extends GameController{
 
     public void moveShapeRight() {
         //if statement to check if the shape is going to hit a window wall or not
-        for (Block block : getModel().getShape().getBlocks()) {
+        for (Block block : getModel().getPlayingShape().getBlocks()) {
             block.setPosition(block.getPosition().getRight());
         }
     }
 
     public void  moveShapeLeft() {
         //if statement to check if the shape is going to hit a window wall or not
-        for (Block block : getModel().getShape().getBlocks()) {
+        for (Block block : getModel().getPlayingShape().getBlocks()) {
             block.setPosition(block.getPosition().getLeft());
         }
     }
