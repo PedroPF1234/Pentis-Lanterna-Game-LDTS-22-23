@@ -30,4 +30,8 @@ public class Position {
         this.x = x + 2;
         return this;
     }
+
+    public boolean equals(Position position) {
+        return (this.x == position.getX() && this.y == position.getY());
+    }
 }

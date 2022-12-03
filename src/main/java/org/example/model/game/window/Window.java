@@ -39,11 +39,21 @@ public class Window {
         return walls;
     }
 
-    public boolean isEmpty(Position position) {
+    public boolean collisionImminent(Position position, String direction) {
+        Position position1 = new Position(position.getX(), position.getY());
+        if (direction.equals("down")) {
+            position1.setY(position.getY()+1);
+        }
+        if (direction.equals("right")) {
+            position1.setX(position.getX()+2);
+        }
+        if (direction.equals("left")) {
+            position1.setX(position.getX()-2);
+        }
         for (Block wall : walls) {
-            if (wall.getPosition().equals(position)) return false;
+            if (wall.getPosition().getX() == position1.getX() && wall.getPosition().getY() == position1.getY()) return true;
             //Condition to test against other shapes.
         }
-        return true;
+        return false;
     }
 }

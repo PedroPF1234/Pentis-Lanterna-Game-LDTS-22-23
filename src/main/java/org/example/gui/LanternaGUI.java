@@ -43,9 +43,7 @@ public class LanternaGUI implements GUI {
         TerminalSize terminalSize = new TerminalSize(width, height);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
-        Terminal terminal = terminalFactory.createTerminal();
-
-        return terminal;
+        return terminalFactory.createTerminal();
     }
 
     @Override
@@ -54,7 +52,7 @@ public class LanternaGUI implements GUI {
         if (keyStroke == null) return ACTION.NONE;
 
         if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
-        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
+        if (keyStroke.getKeyType() == KeyType.Escape) return ACTION.QUIT;
 
         if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.ROTATE;
         if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;

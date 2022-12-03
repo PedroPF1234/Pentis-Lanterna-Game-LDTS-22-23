@@ -33,7 +33,7 @@ public abstract class State<T> {
     public void step(MainGame game, GUI gui, long time) throws IOException {
         GUI.ACTION action = gui.getNextAction();
         controller.step(game, action, time);
-        if (getModel() instanceof Window && time - timeSinceLastDown > 1000) {
+        if (getModel() instanceof Window && time - timeSinceLastDown > 100000) {
             ((Window) getModel()).getPlayingShape().downShape();
             timeSinceLastDown = System.currentTimeMillis();
         }

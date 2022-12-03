@@ -1,9 +1,11 @@
 package org.example.controller.game;
 
 import org.example.MainGame;
+import org.example.gamestate.MenuState;
 import org.example.gui.GUI;
 import org.example.model.game.entities.Block;
 import org.example.model.game.window.Window;
+import org.example.model.menu.Menu;
 
 import java.io.IOException;
 
@@ -13,14 +15,22 @@ public class ShapeController extends GameController{
     }
 
     public void moveShapeRight() {
-        //if statement to check if the shape is going to hit a window wall or not
+        for (Block block : getModel().getPlayingShape().getBlocks()) {
+            if (getModel().collisionImminent(block.getPosition(), "right")) {
+                return;
+            }
+        }
         for (Block block : getModel().getPlayingShape().getBlocks()) {
             block.setPosition(block.getPosition().getRight());
         }
     }
 
     public void  moveShapeLeft() {
-        //if statement to check if the shape is going to hit a window wall or not
+        for (Block block : getModel().getPlayingShape().getBlocks()) {
+            if (getModel().collisionImminent(block.getPosition(), "left")) {
+                return;
+            }
+        }
         for (Block block : getModel().getPlayingShape().getBlocks()) {
             block.setPosition(block.getPosition().getLeft());
         }
@@ -30,6 +40,12 @@ public class ShapeController extends GameController{
     }
 
     private void fullDownShape() {
+        for (Block block : getModel().getPlayingShape().getBlocks()) {
+            if (getModel().collisionImminent(block.getPosition(), "down")) {
+                return;
+            }
+        }
+        getModel().getPlayingShape().downShape();
     }
 
     @Override
@@ -38,5 +54,6 @@ public class ShapeController extends GameController{
         if (action == GUI.ACTION.RIGHT) moveShapeRight();
         if (action == GUI.ACTION.ROTATE) rotateShape();
         if (action == GUI.ACTION.FULL_DOWN) fullDownShape();
+        if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
     }
 }

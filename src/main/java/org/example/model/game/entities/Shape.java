@@ -7,13 +7,13 @@ import java.util.Random;
 public class Shape extends Block{
 
     enum SHAPE {F, I, L, S, P, T, U, V, W, X, Y, Z, FM, LM, SM, PM, YM, ZM, NONE}
-    private final List<Block> blocks;
-
+    private List<Block> blocks;
+    private final  SHAPE selectedShape;
     private final String blockColour;
 
     public Shape(int x, int y) {
         super(x,y);
-        SHAPE selectedShape = getNextShape();
+        selectedShape = getNextShape();
         this.blocks = constructShape(selectedShape);
         this.blockColour = getColourOfShape(selectedShape);
 
@@ -208,11 +208,13 @@ public class Shape extends Block{
     }
 
     //Need to refactor this method to be called "updateShape".
-    //This will update the block's positions within "Shape" to fall in line with Shape's position.
     public void downShape() {
-        for (Block block : blocks) {
-            block.setPosition(block.getPosition().getX(), block.getPosition().getY() + 1);
-        }
+        this.setPosition(this.getPosition().getX(), this.getPosition().getY() + 1);
+        updateShape();
+    }
+
+    public void updateShape() {
+        this.blocks = constructShape(selectedShape);
     }
 
     //Metodo de colisoes

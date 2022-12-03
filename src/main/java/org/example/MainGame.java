@@ -28,7 +28,7 @@ public class MainGame {
 
 
     public void startGame() throws IOException {
-        final int FPS = 60;
+        final int FPS = 240 ;
         int frameTime = 1000/FPS;
 
       while (this.state != null) {
