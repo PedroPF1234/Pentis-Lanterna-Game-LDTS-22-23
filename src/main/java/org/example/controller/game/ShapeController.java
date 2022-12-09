@@ -20,9 +20,8 @@ public class ShapeController extends GameController{
                 return;
             }
         }
-        for (Block block : getModel().getPlayingShape().getBlocks()) {
-            block.setPosition(block.getPosition().getRight());
-        }
+        getModel().getPlayingShape().setPosition(getModel().getPlayingShape().getPosition().getRight());
+        getModel().getPlayingShape().updateShape();
     }
 
     public void  moveShapeLeft() {
@@ -31,9 +30,8 @@ public class ShapeController extends GameController{
                 return;
             }
         }
-        for (Block block : getModel().getPlayingShape().getBlocks()) {
-            block.setPosition(block.getPosition().getLeft());
-        }
+        getModel().getPlayingShape().setPosition(getModel().getPlayingShape().getPosition().getLeft());
+        getModel().getPlayingShape().updateShape();
     }
 
     private void rotateShape() {

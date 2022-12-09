@@ -209,6 +209,7 @@ public class Shape extends Block{
 
     //Need to refactor this method to be called "updateShape".
     public void downShape() {
+
         this.setPosition(this.getPosition().getX(), this.getPosition().getY() + 1);
         updateShape();
     }

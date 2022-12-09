@@ -51,9 +51,29 @@ public class Window {
             position1.setX(position.getX()-2);
         }
         for (Block wall : walls) {
-            if (wall.getPosition().getX() == position1.getX() && wall.getPosition().getY() == position1.getY()) return true;
-            //Condition to test against other shapes.
+            if (wall.getPosition().getX() == position1.getX() && wall.getPosition().getY() == position1.getY()) {
+                if (wall.getPosition().getY() == 26) nextPlayingShape();
+                return true;
+            }
+        }
+        for (int i = 0; i < shapes.size()-3; i++) {
+            for (Block block : shapes.get(i).getBlocks()) {
+                if (block.getPosition().getX() == position1.getX() && block.getPosition().getY() == position1.getY()) {
+                    nextPlayingShape();
+                    return true;
+                }
+            }
         }
         return false;
+    }
+
+    public void nextPlayingShape() {
+        Shape to_add = new Shape(36, 8);
+        shapes.get(shapes.size() - 1).setPosition(36, 4);
+        shapes.get(shapes.size() - 2).setPosition(10, 4);
+        shapes.add(to_add);
+        for (Shape shape : shapes) {
+            shape.updateShape();
+        }
     }
 }
