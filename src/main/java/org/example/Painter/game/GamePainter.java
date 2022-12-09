@@ -15,7 +15,7 @@ public class GamePainter extends Painter<Window> {
 
     @Override
     public void drawEntities(GUI gui) {
-        drawShape(gui, getModel().getShapes(), new ShapePainter());
+        drawShapes(gui, getModel().getShapes(), new ShapePainter());
         drawWall(gui, getModel().getWalls(), new WallPainter());
     }
 
@@ -25,7 +25,7 @@ public class GamePainter extends Painter<Window> {
         }
     }
 
-    private void drawShape(GUI gui, List<Shape> shapes, ShapePainter shapePainter) {
+    private void drawShapes(GUI gui, List<Shape> shapes, ShapePainter shapePainter) {
         for (Shape shape : shapes) {
             String blockColour = shape.getBlockColour();
             for (Block block : shape.getBlocks()) {

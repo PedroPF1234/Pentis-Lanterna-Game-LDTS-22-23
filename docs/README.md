@@ -16,13 +16,14 @@ for LPOO 2022/23.
 start a new game, enter the HighScore Menu or to exit the game.
 - **Automatic Start** - As soon as the player hops into a new game, a shape is already drawn onto the screen, ready to
 be controlled.
-- **Window borders** - To be implemented a "wall" for the game window which will serve as a collision detector so that
-  the shapes the player is controlling don't go out of screen.
+- **Window borders** - Implemented a "wall" for the game window which will serve as a collision detector so that
+  the shape the player is controlling doesn't go out of bounds.
+- **Collision Detector** - This allows the game to not let the shape go out of bounds or make it stop once it reaches
+  the floor.
+- **Next Shapes** - A visual hint letting the player know what the next 2 playable shapes will look like.
 
 ### PLANNED FEATURES
 
-- **Collision Detector** - This will allow the game to not let the shape go out of bounds or make it stop once it reaches
-the floor.
 - **Points Mechanic** - The player will be awarded points every time they clear a line, "survive" another round, 
 increasing in value the longer the player has survived.
 - **Level counter** - After a player is awarded a certain amount of points, their in-game level is increased, along 
