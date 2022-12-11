@@ -1,7 +1,7 @@
 package org.example.gamestate;
 
 import org.example.MainGame;
-import org.example.Painter.Painter;
+import org.example.viewer.Viewer;
 import org.example.controller.Controller;
 import org.example.gui.GUI;
 import org.example.model.game.entities.Block;
@@ -13,17 +13,17 @@ public abstract class State<T> {
 
     private final T model;
     private final Controller<T> controller;
-    private final Painter<T> painter;
+    private final Viewer<T> viewer;
 
     private long timeSinceLastDown = System.currentTimeMillis();
 
     public State(T model) {
         this.model = model;
         this.controller = getController();
-        this.painter = getPainter();
+        this.viewer = getPainter();
     }
 
-    protected abstract Painter<T> getPainter();
+    protected abstract Viewer<T> getPainter();
 
     protected abstract Controller<T> getController();
 
@@ -43,7 +43,7 @@ public abstract class State<T> {
             }
             ((Window) getModel()).getPlayingShape().pushShapeDown();
         }
-        painter.draw(gui);
+        viewer.draw(gui);
 
 
 

@@ -1,7 +1,7 @@
 package org.example.gamestate;
 
-import org.example.Painter.Painter;
-import org.example.Painter.game.GamePainter;
+import org.example.viewer.Viewer;
+import org.example.viewer.game.GameViewer;
 import org.example.controller.Controller;
 import org.example.controller.game.WindowController;
 import org.example.model.game.window.Window;
@@ -12,8 +12,8 @@ public class GameState extends State<Window> {
     }
 
     @Override
-    protected Painter<Window> getPainter() {
-        return new GamePainter(getModel());
+    protected Viewer<Window> getPainter() {
+        return new GameViewer(getModel());
     }
 
     @Override

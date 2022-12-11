@@ -1,13 +1,13 @@
-package org.example.Painter;
+package org.example.viewer;
 
 import org.example.gui.GUI;
 
 import java.io.IOException;
 
-public abstract class Painter<T> {
+public abstract class Viewer<T> {
     private final T model;
 
-    protected Painter(T model) {
+    protected Viewer(T model) {
         this.model = model;
     }
 

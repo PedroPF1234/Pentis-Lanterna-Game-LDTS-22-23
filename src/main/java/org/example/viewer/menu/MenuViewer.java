@@ -1,12 +1,12 @@
-package org.example.Painter.menu;
+package org.example.viewer.menu;
 
-import org.example.Painter.Painter;
+import org.example.viewer.Viewer;
 import org.example.gui.GUI;
 import org.example.model.Position;
 import org.example.model.menu.Menu;
 
-public class MenuPainter extends Painter<Menu> {
-    public MenuPainter(Menu menu) {
+public class MenuViewer extends Viewer<Menu> {
+    public MenuViewer(Menu menu) {
         super(menu);
     }
 

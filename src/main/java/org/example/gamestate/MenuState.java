@@ -1,7 +1,7 @@
 package org.example.gamestate;
 
-import org.example.Painter.menu.MenuPainter;
-import org.example.Painter.Painter;
+import org.example.viewer.menu.MenuViewer;
+import org.example.viewer.Viewer;
 import org.example.controller.Controller;
 import org.example.controller.menu.MenuController;
 import org.example.model.menu.Menu;
@@ -13,8 +13,8 @@ public class MenuState extends State<Menu> {
     }
 
     @Override
-    protected Painter<Menu> getPainter() {
-        return new MenuPainter(getModel());
+    protected Viewer<Menu> getPainter() {
+        return new MenuViewer(getModel());
     }
 
     @Override

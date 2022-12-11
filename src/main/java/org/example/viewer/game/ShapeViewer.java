@@ -1,10 +1,9 @@
-package org.example.Painter.game;
+package org.example.viewer.game;
 
 import org.example.gui.GUI;
 import org.example.model.game.entities.Block;
-import org.example.model.game.entities.Shape;
 
-public class ShapePainter implements BlockPainter<Block> {
+public class ShapeViewer implements BlockViewer<Block> {
 
 
     @Override
