@@ -14,7 +14,7 @@ public class WindowBuilderLoader extends WindowBuilder{
         List<Shape> shapes = new ArrayList<>();
         shapes.add(new Shape(10, 4));
         for (int i = 0; i < 2; i++) {
-            shapes.add(new Shape(36, 4 + i*4));
+            shapes.add(new Shape(36, 4 + i*6));
         }
         return shapes;
     }
@@ -23,13 +23,13 @@ public class WindowBuilderLoader extends WindowBuilder{
     protected List<Block> createWalls() {
         List<Block> wall = new ArrayList<>();
 
-        for (int x = 0; x < 30 - 3; x++) {
+        for (int x = 0; x < 27; x++) {
             for (int y = 0; y < 27; y++) {
 
                 if (x == 0) wall.add(new Wall(x, y));
                 if (x == 26) wall.add(new Wall(x, y));
-                if (y == 0 && x != 0 && x != 29) wall.add(new Wall(x, y));
-                if (y == 26 && x != 0 && x != 29) wall.add(new Wall(x, y));
+                if (y == 0 && x != 0 && x != 26) wall.add(new Wall(x, y));
+                if (y == 26 && x != 0 && x != 26) wall.add(new Wall(x, y));
             }
         }
 

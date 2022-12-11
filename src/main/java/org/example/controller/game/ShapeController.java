@@ -20,8 +20,7 @@ public class ShapeController extends GameController{
                 return;
             }
         }
-        getModel().getPlayingShape().setPosition(getModel().getPlayingShape().getPosition().getRight());
-        getModel().getPlayingShape().updateShape();
+        getModel().getPlayingShape().pushShapeRight();
     }
 
     public void  moveShapeLeft() {
@@ -30,13 +29,23 @@ public class ShapeController extends GameController{
                 return;
             }
         }
-        getModel().getPlayingShape().setPosition(getModel().getPlayingShape().getPosition().getLeft());
-        getModel().getPlayingShape().updateShape();
+        getModel().getPlayingShape().pushShapeLeft();
     }
 
     private void rotateShape() {
         getModel().getPlayingShape().rotateShape();
         getModel().getPlayingShape().updateShape();
+        for (int j = 0; j < 5; j++) {
+            for (int i = 0; i < 5; i++) {
+                int tries = 0;
+                while (getModel().collisionImminent(getModel().getPlayingShape().getBlocks().get(i).getPosition(), "own") && tries < 3) {
+                    if (getModel().getPlayingShape().getBlocks().get(i).getPosition().getY() == 26) getModel().getPlayingShape().pushShapeUp();
+                    else if (getModel().getPlayingShape().getBlocks().get(i).getPosition().getX() < 15) getModel().getPlayingShape().pushShapeRight();
+                    else getModel().getPlayingShape().pushShapeLeft();
+                    tries++;
+                }
+            }
+        }
     }
 
     private void pushShapeDown() {

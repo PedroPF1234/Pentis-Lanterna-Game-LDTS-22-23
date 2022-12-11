@@ -11,9 +11,11 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import org.example.model.Position;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class LanternaGUI implements GUI {
@@ -72,11 +74,6 @@ public class LanternaGUI implements GUI {
         TextGraphics tg = screen.newTextGraphics();
         tg.setBackgroundColor(TextColor.Factory.fromString(blockColour));
         tg.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(2, 1), ' ');
-    }
-
-    @Override
-    public void drawWall(Position position) {
-
     }
 
     @Override

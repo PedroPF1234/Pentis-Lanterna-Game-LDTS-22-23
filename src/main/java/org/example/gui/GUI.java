@@ -10,8 +10,6 @@ public interface GUI {
 
     void drawBlock(Position position, String blockColour);
 
-    void drawWall(Position position);
-
     void drawText(Position position, String text, String color);
 
     void clear();

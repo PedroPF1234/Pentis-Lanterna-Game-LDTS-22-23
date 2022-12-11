@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Shape extends Block{
-
     enum SHAPE {F, I, L, S, P, T, U, V, W, X, Y, Z, FM, LM, SM, PM, YM, ZM, NONE}
     private List<Block> blocks;
     private int rotation = 0;
@@ -521,10 +520,26 @@ public class Shape extends Block{
         return blockColour;
     }
 
-    //Need to refactor this method to be called "updateShape".
-    public void pushShapeDown() {
+    public int getRotation() {
+        return rotation;
+    }
 
+    public void pushShapeRight() {
+        this.setPosition(this.getPosition().getRight());
+        updateShape();
+    }
+
+    public void  pushShapeLeft() {
+        this.setPosition(this.getPosition().getLeft());
+        updateShape();
+    }
+    public void pushShapeDown() {
         this.setPosition(this.getPosition().getX(), this.getPosition().getY() + 1);
+        updateShape();
+    }
+
+    public void pushShapeUp() {
+        this.setPosition(this.getPosition().getX(), this.getPosition().getY() - 1);
         updateShape();
     }
 

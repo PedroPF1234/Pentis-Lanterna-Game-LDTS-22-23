@@ -50,16 +50,20 @@ public class Window {
         if (direction.equals("left")) {
             position1.setX(position.getX()-2);
         }
+        if (direction.equals("own")) {
+            position1.setX(position.getX());
+        }
+
         for (Block wall : walls) {
             if (wall.getPosition().getX() == position1.getX() && wall.getPosition().getY() == position1.getY()) {
-                if (wall.getPosition().getY() == 26) nextPlayingShape();
+                if (wall.getPosition().getY() == 26 && !direction.equals("own")) nextPlayingShape();
                 return true;
             }
         }
         for (int i = 0; i < shapes.size()-3; i++) {
             for (Block block : shapes.get(i).getBlocks()) {
                 if (block.getPosition().getX() == position1.getX() && block.getPosition().getY() == position1.getY()) {
-                    nextPlayingShape();
+                    if (direction.equals("down")) nextPlayingShape();
                     return true;
                 }
             }
@@ -68,8 +72,8 @@ public class Window {
     }
 
     public void nextPlayingShape() {
-        Shape to_add = new Shape(36, 8);
-        shapes.get(shapes.size() - 1).setPosition(36, 4);
+        Shape to_add = new Shape(36, 12);
+        shapes.get(shapes.size() - 1).setPosition(36, 6);
         shapes.get(shapes.size() - 2).setPosition(10, 4);
         shapes.add(to_add);
         for (Shape shape : shapes) {
