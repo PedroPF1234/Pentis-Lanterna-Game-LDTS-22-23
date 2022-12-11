@@ -14,7 +14,7 @@ public class Shape extends Block{
 
     public Shape(int x, int y) {
         super(x,y);
-        selectedShape = SHAPE.I;
+        selectedShape = getNextShape();
         this.blocks = constructShape(selectedShape);
         this.blockColour = getColourOfShape(selectedShape);
 
@@ -58,61 +58,229 @@ public class Shape extends Block{
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY()));
         }
-        if (selectedShape == SHAPE.L) {
+        if (selectedShape == SHAPE.L && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.U) {
+        if (selectedShape == SHAPE.L && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
-            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
-            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.T) {
+        if (selectedShape == SHAPE.L && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.L && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.U && rotation == 0) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.U && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+        }
+        if (selectedShape == SHAPE.U && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.U && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.T && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.P) {
+        if (selectedShape == SHAPE.T && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+        }
+        if (selectedShape == SHAPE.T && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.T && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.P && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.F) {
+        if (selectedShape == SHAPE.P && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+        }
+        if (selectedShape == SHAPE.P && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.P && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.F && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.S) {
+        if (selectedShape == SHAPE.F && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.F && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.F && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.S && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY()));
         }
-        if (selectedShape == SHAPE.V) {
+        if (selectedShape == SHAPE.S && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));
+        }
+        if (selectedShape == SHAPE.S && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.S && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+        }
+        if (selectedShape == SHAPE.V && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.W) {
+        if (selectedShape == SHAPE.V && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.V && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.V && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+        }
+        if (selectedShape == SHAPE.W && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+        }
+        if (selectedShape == SHAPE.W && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.W && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.W && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
         }
         if (selectedShape == SHAPE.X) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
@@ -121,61 +289,201 @@ public class Shape extends Block{
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.Y) {
+        if (selectedShape == SHAPE.Y && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
         }
-        if (selectedShape == SHAPE.Z) {
+        if (selectedShape == SHAPE.Y && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+        }
+        if (selectedShape == SHAPE.Y && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.Y && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.Z && (rotation == 0 || rotation == 2)) {
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.FM) {
+        if (selectedShape == SHAPE.Z && (rotation == 1 || rotation == 3)) {
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.FM && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.LM) {
+        if (selectedShape == SHAPE.FM && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.FM && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.FM && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+        }
+        if (selectedShape == SHAPE.LM && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.SM) {
+        if (selectedShape == SHAPE.LM && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.LM && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.LM && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.SM && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY()));
         }
-        if (selectedShape == SHAPE.PM) {
+        if (selectedShape == SHAPE.SM && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+        }
+        if (selectedShape == SHAPE.SM && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.SM && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));
+        }
+        if (selectedShape == SHAPE.PM && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
         }
-        if (selectedShape == SHAPE.YM) {
+        if (selectedShape == SHAPE.PM && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.PM && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.PM && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.YM && rotation == 0) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
         }
-        if (selectedShape == SHAPE.ZM) {
+        if (selectedShape == SHAPE.YM && rotation == 1) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+        }
+        if (selectedShape == SHAPE.YM && rotation == 2) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+        }
+        if (selectedShape == SHAPE.YM && rotation == 3) {
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
+        }
+        if (selectedShape == SHAPE.ZM && (rotation == 0 || rotation == 2)) {
             blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
             blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() + 1));
+        }
+        if (selectedShape == SHAPE.ZM && (rotation == 1 || rotation == 3)) {
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY() + 1));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY() - 1));
         }
         return blocks;
     }

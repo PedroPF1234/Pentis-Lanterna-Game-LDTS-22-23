@@ -21,7 +21,7 @@ be controlled.
 - **Collision Detector** - This allows the game to not let the shape go out of bounds or make it stop once it reaches
   the floor.
 - **Next Shapes** - A visual hint letting the player know what the next 2 playable shapes will look like.
-
+- **Shape Rotation** - By pressing the Arrow-Up key, the shape rotates 90º clockwise.
 ### PLANNED FEATURES
 
 - **Points Mechanic** - The player will be awarded points every time they clear a line, "survive" another round, 
