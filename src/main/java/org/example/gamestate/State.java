@@ -5,7 +5,6 @@ import org.example.Painter.Painter;
 import org.example.controller.Controller;
 import org.example.gui.GUI;
 import org.example.model.game.entities.Block;
-import org.example.model.game.entities.Shape;
 import org.example.model.game.window.Window;
 
 import java.io.IOException;
@@ -42,7 +41,7 @@ public abstract class State<T> {
                     return;
                 }
             }
-            ((Window) getModel()).getPlayingShape().downShape();
+            ((Window) getModel()).getPlayingShape().pushShapeDown();
         }
         painter.draw(gui);
 

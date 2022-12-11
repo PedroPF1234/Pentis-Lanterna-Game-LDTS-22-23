@@ -35,15 +35,16 @@ public class ShapeController extends GameController{
     }
 
     private void rotateShape() {
+        getModel().getPlayingShape().rotateShape();
     }
 
-    private void fullDownShape() {
+    private void pushShapeDown() {
         for (Block block : getModel().getPlayingShape().getBlocks()) {
             if (getModel().collisionImminent(block.getPosition(), "down")) {
                 return;
             }
         }
-        getModel().getPlayingShape().downShape();
+        getModel().getPlayingShape().pushShapeDown();
     }
 
     @Override
@@ -51,7 +52,7 @@ public class ShapeController extends GameController{
         if (action == GUI.ACTION.LEFT) moveShapeLeft();
         if (action == GUI.ACTION.RIGHT) moveShapeRight();
         if (action == GUI.ACTION.ROTATE) rotateShape();
-        if (action == GUI.ACTION.FULL_DOWN) fullDownShape();
+        if (action == GUI.ACTION.FULL_DOWN) pushShapeDown();
         if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
     }
 }
