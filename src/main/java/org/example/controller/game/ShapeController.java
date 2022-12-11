@@ -36,6 +36,7 @@ public class ShapeController extends GameController{
 
     private void rotateShape() {
         getModel().getPlayingShape().rotateShape();
+        getModel().getPlayingShape().updateShape();
     }
 
     private void pushShapeDown() {

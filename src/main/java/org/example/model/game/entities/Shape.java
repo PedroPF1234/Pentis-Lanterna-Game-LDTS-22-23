@@ -14,7 +14,7 @@ public class Shape extends Block{
 
     public Shape(int x, int y) {
         super(x,y);
-        selectedShape = getNextShape();
+        selectedShape = SHAPE.I;
         this.blocks = constructShape(selectedShape);
         this.blockColour = getColourOfShape(selectedShape);
 
@@ -44,12 +44,19 @@ public class Shape extends Block{
 
     private List<Block> constructShape(SHAPE selectedShape) {
         List<Block> blocks = new ArrayList<>();
-        if (selectedShape == SHAPE.I) {
+        if (selectedShape == SHAPE.I && (rotation == 0  || rotation == 2)) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));
+        }
+        if (selectedShape == SHAPE.I && (rotation == 1  || rotation == 3)) {
+            blocks.add(new Block(this.getPosition().getX() - 4, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));
+            blocks.add(new Block(this.getPosition().getX() + 4, this.getPosition().getY()));
         }
         if (selectedShape == SHAPE.L) {
             blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));
