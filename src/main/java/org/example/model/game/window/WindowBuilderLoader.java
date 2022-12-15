@@ -12,7 +12,7 @@ public class WindowBuilderLoader extends WindowBuilder{
     @Override
     protected List<Shape> createShapes() {
         List<Shape> shapes = new ArrayList<>();
-        shapes.add(new Shape(10, 4));
+        shapes.add(new Shape(12, 4));
         for (int i = 0; i < 2; i++) {
             shapes.add(new Shape(36, 4 + i*6));
         }

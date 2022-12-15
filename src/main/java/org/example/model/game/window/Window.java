@@ -1,12 +1,16 @@
 package org.example.model.game.window;
 
+import org.example.gamestate.MenuState;
 import org.example.model.Position;
 import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
+import org.example.model.menu.Menu;
 
 import java.util.List;
 
 public class Window {
+    public boolean lostGame;
+
     private final int width;
     private final int height;
 
@@ -94,10 +98,23 @@ public class Window {
     public void nextPlayingShape() {
         Shape to_add = new Shape(36, 10);
         shapes.get(shapes.size() - 1).setPosition(36, 4);
-        shapes.get(shapes.size() - 2).setPosition(10, 4);
+        shapes.get(shapes.size() - 2).setPosition(12, 4);
         shapes.add(to_add);
         for (Shape shape : shapes) {
             shape.updateShape();
         }
+        lostGame = losingConditionCheck(getPlayingShape());
+        //Adicionar method call para verificar se ha alguma linha cheia
+    }
+
+    private boolean losingConditionCheck(Shape shape) {
+        for (Block blockToSpawn : shape.getBlocks()) {
+            for (int i = 0; i < shapes.size() - 3; i++) {
+                for (Block block : shapes.get(i).getBlocks()) {
+                    if (blockToSpawn.getPosition().equals(block.getPosition())) return true;
+                }
+            }
+        }
+        return false;
     }
 }
