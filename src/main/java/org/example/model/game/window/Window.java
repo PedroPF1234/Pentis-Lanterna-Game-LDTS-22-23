@@ -10,6 +10,10 @@ public class Window {
     private final int width;
     private final int height;
 
+    private int score = 0;
+
+    private int level = 0;
+
     private List<Shape> shapes;
 
     private List<Block> walls;
@@ -17,6 +21,22 @@ public class Window {
     public Window(int width, int height) {
         this.width = width;
         this.height = height;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public void setShapes(List<Shape> shapes) {
@@ -72,8 +92,8 @@ public class Window {
     }
 
     public void nextPlayingShape() {
-        Shape to_add = new Shape(36, 12);
-        shapes.get(shapes.size() - 1).setPosition(36, 6);
+        Shape to_add = new Shape(36, 10);
+        shapes.get(shapes.size() - 1).setPosition(36, 4);
         shapes.get(shapes.size() - 2).setPosition(10, 4);
         shapes.add(to_add);
         for (Shape shape : shapes) {

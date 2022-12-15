@@ -1,5 +1,6 @@
 package org.example.viewer.game;
 
+import org.example.model.Position;
 import org.example.viewer.Viewer;
 import org.example.gui.GUI;
 import org.example.model.game.entities.Block;
@@ -17,6 +18,10 @@ public class GameViewer extends Viewer<Window> {
     public void drawEntities(GUI gui) {
         drawShapes(gui, getModel().getShapes(), new ShapeViewer());
         drawWall(gui, getModel().getWalls(), new WallViewer());
+
+        gui.drawText(new Position(32, 0), "Next Shapes", "#FFFFFF");
+        gui.drawText(new Position(30, 22), "Score: " + getModel().getScore(), "#FFFFFF");
+        gui.drawText(new Position(30, 16), "Level: " + getModel().getLevel(), "#FFFFFF");
     }
 
     private void drawWall(GUI gui, List<Block> walls, WallViewer wallViewer) {
