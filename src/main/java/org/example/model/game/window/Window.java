@@ -8,6 +8,8 @@ import org.example.model.menu.Menu;
 
 import java.util.List;
 
+import static java.lang.Math.pow;
+
 public class Window {
     public boolean lostGame;
 
@@ -100,11 +102,17 @@ public class Window {
         shapes.get(shapes.size() - 1).setPosition(36, 4);
         shapes.get(shapes.size() - 2).setPosition(12, 4);
         shapes.add(to_add);
-        for (Shape shape : shapes) {
-            shape.updateShape();
+        for (int i = shapes.size() - 3; i < shapes.size(); i++) {
+            shapes.get(i).updateShape();
         }
         lostGame = losingConditionCheck(getPlayingShape());
-        //Adicionar method call para verificar se ha alguma linha cheia
+        int numberOfLineCleared = 0;
+        while (filledLineCheck() != 0) {
+            cleanLine(filledLineCheck());
+            numberOfLineCleared++;
+        }
+        score += ((100 * numberOfLineCleared) + (pow(2, numberOfLineCleared - 1)*(10*numberOfLineCleared - 1)));
+        level = score / 500;
     }
 
     private boolean losingConditionCheck(Shape shape) {
@@ -116,5 +124,43 @@ public class Window {
             }
         }
         return false;
+    }
+
+    private int filledLineCheck() {
+        int count = 0;
+        for (int y = 1; y < 26; y++) {
+            for (int x = 2; x < 25; x += 2) {
+                for (int i = 0; i < shapes.size() - 3; i++) {
+                    for (Block block : shapes.get(i).getBlocks()) {
+                        if (block.getPosition().getX() == x && block.getPosition().getY() == y) {
+                            count++;
+                        }
+                    }
+                }
+            }
+            if (count == 12) return y;
+            count = 0;
+        }
+        return 0;
+    }
+
+    private void cleanLine(int line) {
+        for (Shape shape : shapes) {
+            int numBlocks = shape.getBlocks().size();
+            for (int i = 0; i < numBlocks; i++) {
+                if (shape.getBlocks().get(i).getPosition().getY() == line) {
+                    shape.getBlocks().remove(shape.getBlocks().get(i));
+                    numBlocks--;
+                    i--;
+                }
+            }
+        }
+        for (int i = 0; i < shapes.size() - 3; i++) {
+            for (Block block : shapes.get(i).getBlocks()) {
+                if (block.getPosition().getY() < line) {
+                    block.setPosition(block.getPosition().getX(), block.getPosition().getY() + 1);
+                }
+            }
+        }
     }
 }

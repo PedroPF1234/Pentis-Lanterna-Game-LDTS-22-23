@@ -22,7 +22,7 @@ public class GameViewer extends Viewer<Window> {
 
         gui.drawText(new Position(32, 0), "Next Shapes", "#FFFFFF");
         gui.drawText(new Position(30, 22), "Score: " + getModel().getScore(), "#FFFFFF");
-        gui.drawText(new Position(30, 16), "Level: " + getModel().getLevel(), "#FFFFFF");
+        gui.drawText(new Position(30, 16), "Level: " + (getModel().getLevel() + 1), "#FFFFFF");
         if (getModel().lostGame) {
             for (int i = 1; i < 26; i++) {
                 for (int j = 0; j < 2; j++) {
