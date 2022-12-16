@@ -20,6 +20,10 @@ public class GameViewer extends Viewer<Window> {
         drawShapes(gui, getModel().getShapes(), new ShapeViewer());
         drawWall(gui, getModel().getWalls(), new WallViewer());
 
+        if (getModel().isPaused()) {
+            gui.drawText(new Position(30, 12), "the game is paused!", "#FF0000");
+        }
+
         gui.drawText(new Position(18, 1), "next shapes", "#FFFFFF");
         gui.drawText(new Position(18, 23), "score: " + getModel().getScore(), "#FFFFFF");
         gui.drawText(new Position(18, 17), "level: " + (getModel().getLevel() + 1), "#FFFFFF");

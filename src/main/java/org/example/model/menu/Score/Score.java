@@ -5,18 +5,18 @@ import java.io.Serializable;
 public class Score implements Serializable {
     private int level;
     private int score;
-    private String name;
-    public Score(int level, int score, String name) {
+    private char[] name;
+    public Score(int level, int score, char[] name) {
         this.level = level;
         this.score = score;
         this.name = name;
     }
 
-    public String getName() {
+    public char[] getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(char[] name) {
         this.name = name;
     }
 

@@ -14,9 +14,11 @@ public class Window {
     private final int width;
     private final int height;
 
-    private int score = 0;
+    private int score = 5000;
 
     private int level = 0;
+
+    private boolean paused = false;
 
     private List<Shape> shapes;
 
@@ -61,6 +63,18 @@ public class Window {
 
     public List<Block> getWalls() {
         return walls;
+    }
+
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void pauseGame() {
+        this.paused = true;
+    }
+
+    public void unpauseGame() {
+        this.paused = false;
     }
 
     public boolean collisionImminent(Position position, String direction) {
@@ -109,7 +123,28 @@ public class Window {
             cleanLine(filledLineCheck());
             numberOfLineCleared++;
         }
-        score += ((100 * numberOfLineCleared * getLevel()) + (pow(2, numberOfLineCleared - 1)*(10*numberOfLineCleared - 1)));
+        if (numberOfLineCleared != 0) {
+            switch (numberOfLineCleared) {
+                case (1):
+                    score += 40 * (getLevel() + 1);
+                    break;
+                case (2):
+                    score += 100 * (getLevel() + 1);
+                    break;
+                case (3):
+                    score += 300 * (getLevel() + 1);
+                    break;
+                case (4):
+                    score += 1200 * (getLevel() + 1);
+                    break;
+                case (5):
+                    score += 3000 * (getLevel() + 1);
+                    break;
+            }
+        }
+        if ((this.score/(5000 + ((500 * ((this.level+5)/5)) * this.level))) >= this.level) {
+            this.level = (this.score / (5000 + ((500 * ((this.level + 5) / 5)) * this.level)));
+        }
     }
 
     private boolean losingConditionCheck(Shape shape) {
@@ -126,7 +161,7 @@ public class Window {
     private int filledLineCheck() {
         int count = 0;
         for (int y = 1; y < 26; y++) {
-            for (int x = 1; x < 13; x += 2) {
+            for (int x = 1; x < 13; x++) {
                 for (int i = 0; i < shapes.size() - 3; i++) {
                     for (Block block : shapes.get(i).getBlocks()) {
                         if (block.getPosition().getX() == x && block.getPosition().getY() == y) {

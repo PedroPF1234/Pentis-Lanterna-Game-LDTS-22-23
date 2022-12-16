@@ -12,6 +12,7 @@ import org.example.model.menu.Score.ScoreList;
 import org.example.model.menu.Score.ScoreWriter;
 import org.example.state.menu.MenuState;
 
+import java.io.File;
 import java.io.IOException;
 
 public class HighScoreController extends Controller<HighScore> {
@@ -50,7 +51,7 @@ public class HighScoreController extends Controller<HighScore> {
                 }
                 if (keyStroke.getKeyType() == KeyType.Enter) {
                     getModel().userPromptFinished();
-                    Score score = new Score(getModel().getLevel(), getModel().getScore(), getModel().nameToString());
+                    Score score = new Score(getModel().getLevel(), getModel().getScore(), getModel().nameToCharArray());
                     ScoreList scoreList = new ScoreList();
                     scoreList.addScore(score);
                     ScoreWriter scoreWriter = new ScoreWriter();
@@ -62,6 +63,10 @@ public class HighScoreController extends Controller<HighScore> {
         }
         else {
             if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
+            if (action == GUI.ACTION.DELETE) {
+                File file = new File("src/main/resources/highscores/scores.txt");
+                file.delete();
+            }
         }
     }
 }

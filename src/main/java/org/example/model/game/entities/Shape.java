@@ -14,7 +14,7 @@ public class Shape extends Block{
 
     public Shape(int x, int y) {
         super(x,y);
-        selectedShape = getNextShape();
+        selectedShape = SHAPE.I;
         this.blocks = constructShape(selectedShape);
         this.blockColour = getColourOfShape(selectedShape);
 

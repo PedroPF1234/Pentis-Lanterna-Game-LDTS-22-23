@@ -43,7 +43,8 @@ public abstract class State<T> {
     public void step(MainGame game, GUI gui, long time) throws IOException, InterruptedException {
         GUI.ACTION action = gui.getNextAction();
         controller.step(game, action, time);
-        if (getModel() instanceof Window && time - timeSinceLastDown > 1000 * pow((0.90),((Window) getModel()).getLevel())) {
+        if (getModel() instanceof Window && time - timeSinceLastDown > 1000 * pow((0.90),((Window) getModel()).getLevel())
+            && !((Window) getModel()).isPaused()) {
             timeSinceLastDown = System.currentTimeMillis();
             for (Block block : ((Window) getModel()).getPlayingShape().getBlocks()) {
                 if (((Window) getModel()).collisionImminent(block.getPosition(), "down")) {

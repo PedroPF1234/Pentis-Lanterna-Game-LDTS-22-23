@@ -50,7 +50,7 @@ public class HighScore {
          this.fromGameOver = false;
      }
 
-     public String nameToString() {
+     public char[] nameToCharArray() {
          boolean isNotNull = false;
          char[] newName = new char[3];
          for (int i = 0; i < 3; i++) {
@@ -63,7 +63,7 @@ public class HighScore {
              }
          }
          else newName = new char[]{'#', '#', '#'};
-         return newName.toString();
+         return newName;
     }
  }
 

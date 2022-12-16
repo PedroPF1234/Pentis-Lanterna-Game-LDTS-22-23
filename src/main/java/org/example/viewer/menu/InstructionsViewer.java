@@ -25,19 +25,20 @@ public class InstructionsViewer extends Viewer<Instructions> {
                 drawBlock(gui, block, shapeViewer, shape.getBlockColour());
             }
         }
-        gui.drawText(new Position(33, 6), "->", "#FFFFFF");
-        gui.drawText(new Position(2, 5), "press arrow_up", "#FFFFFF");
-        gui.drawText(new Position(2, 6), "to rotate shape", "#FFFFFF");
-        gui.drawText(new Position(2, 10), "press arrow_right to push the shape right.", "#FFFFFF");
-        gui.drawText(new Position(2, 11), "press arrow_left to push the shape left.", "#FFFFFF");
-        gui.drawText(new Position(2, 12), "press arrow_down to push the shape down.", "#FFFFFF");
-        gui.drawText(new Position(2, 13), "exactly one block. alternatively, press", "#FFFFFF");
-        gui.drawText(new Position(2, 14), "space_bar to push the shape all the way down.", "#FFFFFF");
-        gui.drawText(new Position(2, 16), "press tab to shape shift, also know as,", "#FFFFFF");
-        gui.drawText(new Position(2, 17), "getting a new random shape to play with.", "#FFFFFF");
-        gui.drawText(new Position(2, 18), "the shape shift ability can only be used", "#FFFFFF");
-        gui.drawText(new Position(2, 19), "once per round.", "#FFFFFF");
-        gui.drawText(new Position(2, 21), "Press Esc to return to the menu at any", "#FFFFFF");
+        gui.drawText(new Position(33, 4), "->", "#FFFFFF");
+        gui.drawText(new Position(2, 3), "press arrow_up", "#FFFFFF");
+        gui.drawText(new Position(2, 4), "to rotate shape", "#FFFFFF");
+        gui.drawText(new Position(2, 8), "press arrow_right to push the shape right.", "#FFFFFF");
+        gui.drawText(new Position(2, 9), "press arrow_left to push the shape left.", "#FFFFFF");
+        gui.drawText(new Position(2, 10), "press arrow_down to push the shape down.", "#FFFFFF");
+        gui.drawText(new Position(2, 11), "exactly one block. alternatively, press", "#FFFFFF");
+        gui.drawText(new Position(2, 12), "space_bar to push the shape all the way down.", "#FFFFFF");
+        gui.drawText(new Position(2, 14), "press tab to shape shift, also know as,", "#FFFFFF");
+        gui.drawText(new Position(2, 15), "getting a new random shape to play with.", "#FFFFFF");
+        gui.drawText(new Position(2, 16), "the shape shift ability can only be used", "#FFFFFF");
+        gui.drawText(new Position(2, 17), "once per round.", "#FFFFFF");
+        gui.drawText(new Position(2, 19), "press p to pause while in game.", "#FFFFFF");
+        gui.drawText(new Position(2, 21), "press esc to return to the menu at any", "#FFFFFF");
         gui.drawText(new Position(2, 22), "instance of the game.", "#FFFFFF");
     }
 

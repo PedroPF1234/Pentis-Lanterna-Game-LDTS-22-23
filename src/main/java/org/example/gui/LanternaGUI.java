@@ -80,6 +80,8 @@ public class LanternaGUI implements GUI {
         if (keyStroke.getKeyType() == KeyType.Tab) return ACTION.SHAPE_SHIFT;
 
         if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == ' ') return ACTION.FULL_DOWN;
+        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'd') return ACTION.DELETE;
+        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'p') return ACTION.PAUSE;
 
         if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.SELECT;
 

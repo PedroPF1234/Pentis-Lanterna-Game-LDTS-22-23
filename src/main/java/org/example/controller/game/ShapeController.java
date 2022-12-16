@@ -20,7 +20,7 @@ public class ShapeController extends GameController{
 
     public void moveShapeRight() {
         for (Block block : getModel().getPlayingShape().getBlocks()) {
-            if (getModel().collisionImminent(block.getPosition(), "right")) {
+            if (getModel().collisionImminent(block.getPosition(), "right") || getModel().isPaused()) {
                 return;
             }
         }
@@ -29,7 +29,7 @@ public class ShapeController extends GameController{
 
     public void  moveShapeLeft() {
         for (Block block : getModel().getPlayingShape().getBlocks()) {
-            if (getModel().collisionImminent(block.getPosition(), "left")) {
+            if (getModel().collisionImminent(block.getPosition(), "left") || getModel().isPaused()) {
                 return;
             }
         }
@@ -38,9 +38,11 @@ public class ShapeController extends GameController{
 
     private void rotateShape() {
         Position originalPosition = new Position(getModel().getPlayingShape().getPosition().getX(), getModel().getPlayingShape().getPosition().getY());
-        getModel().getPlayingShape().rotateShape();
-        getModel().getPlayingShape().updateShape();
-        rotateShapeCollisionCheck(originalPosition, getModel().getPlayingShape());
+        if (!getModel().isPaused()) {
+            getModel().getPlayingShape().rotateShape();
+            getModel().getPlayingShape().updateShape();
+            rotateShapeCollisionCheck(originalPosition, getModel().getPlayingShape());
+        }
     }
 
     private void rotateShapeCollisionCheck(Position originalPosition, Shape shape) {
@@ -73,14 +75,18 @@ public class ShapeController extends GameController{
 
     private boolean pushShapeDown(boolean twice) {
         for (Block block : getModel().getPlayingShape().getBlocks()) {
-            if (getModel().collisionImminent(block.getPosition(), "down")) {
+            if (getModel().collisionImminent(block.getPosition(), "down") || getModel().isPaused()) {
                 return true;
             }
         }
         getModel().getPlayingShape().pushShapeDown();
         if (twice) getModel().setScore(getModel().getScore()+2);
         else getModel().setScore(getModel().getScore()+1);
-        getModel().setLevel(getModel().getScore()/5000 + ((500 * ((getModel().getLevel()+5)/5)) * getModel().getLevel()));
+        int previousLevel = getModel().getLevel();
+        getModel().setLevel(getModel().getScore()/(5000 + ((500 * ((getModel().getLevel()+5)/5)) * getModel().getLevel())));
+        if (getModel().getLevel() < previousLevel) {
+            getModel().setLevel(previousLevel);
+        }
         return false;
     }
 
@@ -97,7 +103,12 @@ public class ShapeController extends GameController{
         if (action == GUI.ACTION.ROTATE) rotateShape();
         if (action == GUI.ACTION.DOWN) pushShapeDown(false);
         if (action == GUI.ACTION.FULL_DOWN) pushShapeFullDown();
-        if (action == GUI.ACTION.SHAPE_SHIFT && !getModel().getPlayingShape().hasShifted()) getModel().getPlayingShape().shifted();
+        if (action == GUI.ACTION.SHAPE_SHIFT && !getModel().getPlayingShape().hasShifted()) {
+            getModel().getPlayingShape().shifted();
+            rotateShapeCollisionCheck(getModel().getPlayingShape().getPosition(), getModel().getPlayingShape());
+        }
         if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
+        if (action == GUI.ACTION.PAUSE && !getModel().isPaused()) getModel().pauseGame();
+        else if (action == GUI.ACTION.PAUSE && getModel().isPaused()) getModel().unpauseGame();
     }
 }
