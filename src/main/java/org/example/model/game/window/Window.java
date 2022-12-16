@@ -14,7 +14,7 @@ public class Window {
     private final int width;
     private final int height;
 
-    private int score = 5000;
+    private int score = 0;
 
     private int level = 0;
 
