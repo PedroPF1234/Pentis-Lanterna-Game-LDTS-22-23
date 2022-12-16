@@ -8,7 +8,7 @@ But there's more. Besides hold more than twice the amount of shape presented tha
 gives you the opportunity to call onto Miss Luck and switch the playing shape once everytime a new round starts.
  
 This project was developed by *Pedro Fonseca* (*up202108653*@fe.up.pt) and *Jorge Restivo* (*up202108886*@fe.up.pt)
-for LPOO 2022/23.
+for LDTS 2022/23.
 
 ### IMPLEMENTED FEATURES
 

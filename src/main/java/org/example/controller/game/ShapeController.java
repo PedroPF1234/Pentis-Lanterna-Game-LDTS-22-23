@@ -56,7 +56,7 @@ public class ShapeController extends GameController{
             }
         }
 
-        if (abs(originalPosition.getX()-shape.getPosition().getX()) > 4 || shape.getPosition().getX() < 2 || shape.getPosition().getX() > 24) {
+        if (abs(originalPosition.getX()-shape.getPosition().getX()) > 2 || shape.getPosition().getX() < 1 || shape.getPosition().getX() > 23) {
             shape.setPosition(originalPosition);
             shape.updateShape();
         }

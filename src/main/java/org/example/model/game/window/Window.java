@@ -69,10 +69,10 @@ public class Window {
             position1.setY(position.getY()+1);
         }
         if (direction.equals("right")) {
-            position1.setX(position.getX()+2);
+            position1.setX(position.getX()+1);
         }
         if (direction.equals("left")) {
-            position1.setX(position.getX()-2);
+            position1.setX(position.getX()-1);
         }
         if (direction.equals("own")) {
             position1.setX(position.getX());
@@ -96,9 +96,9 @@ public class Window {
     }
 
     public void nextPlayingShape() {
-        Shape to_add = new Shape(36, 10);
-        shapes.get(shapes.size() - 1).setPosition(36, 4);
-        shapes.get(shapes.size() - 2).setPosition(12, 4);
+        Shape to_add = new Shape(23, 11);
+        shapes.get(shapes.size() - 1).setPosition(23, 5);
+        shapes.get(shapes.size() - 2).setPosition(6, 4);
         shapes.add(to_add);
         for (int i = shapes.size() - 3; i < shapes.size(); i++) {
             shapes.get(i).updateShape();
@@ -126,7 +126,7 @@ public class Window {
     private int filledLineCheck() {
         int count = 0;
         for (int y = 1; y < 26; y++) {
-            for (int x = 2; x < 25; x += 2) {
+            for (int x = 1; x < 13; x += 2) {
                 for (int i = 0; i < shapes.size() - 3; i++) {
                     for (Block block : shapes.get(i).getBlocks()) {
                         if (block.getPosition().getX() == x && block.getPosition().getY() == y) {

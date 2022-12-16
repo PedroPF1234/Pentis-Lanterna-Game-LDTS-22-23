@@ -20,13 +20,22 @@ public class GameViewer extends Viewer<Window> {
         drawShapes(gui, getModel().getShapes(), new ShapeViewer());
         drawWall(gui, getModel().getWalls(), new WallViewer());
 
-        gui.drawText(new Position(32, 0), "Next Shapes", "#FFFFFF");
-        gui.drawText(new Position(30, 22), "Score: " + getModel().getScore(), "#FFFFFF");
-        gui.drawText(new Position(30, 16), "Level: " + (getModel().getLevel() + 1), "#FFFFFF");
+        gui.drawText(new Position(18, 1), "next shapes", "#FFFFFF");
+        gui.drawText(new Position(18, 23), "score: " + getModel().getScore(), "#FFFFFF");
+        gui.drawText(new Position(18, 17), "level: " + (getModel().getLevel() + 1), "#FFFFFF");
         if (getModel().lostGame) {
             for (int i = 1; i < 26; i++) {
-                for (int j = 0; j < 2; j++) {
-                    gui.drawText(new Position(4 + 11 * j, i), "Game Over", "#FF0000");
+                if (i % 2 == 0) {
+                    gui.drawText(new Position(1, i), " game over  ", "#FF0000");
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    gui.refresh();
+                }
+                else {
+                    gui.drawText(new Position(1, i), "  game over ", "#FF0000");
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {

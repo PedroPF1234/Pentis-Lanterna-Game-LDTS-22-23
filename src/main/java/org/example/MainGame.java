@@ -5,6 +5,7 @@ import org.example.state.menu.MenuState;
 import org.example.gui.LanternaGUI;
 import org.example.model.menu.Menu;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class MainGame {
@@ -21,12 +22,12 @@ public class MainGame {
         return state;
     }
 
-    public MainGame() throws IOException {
+    public MainGame() throws IOException, FontFormatException {
         this.gui = new LanternaGUI(50, 27);
         this.state = new MenuState(new Menu());
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, FontFormatException {
        new MainGame().startGame();
     }
 

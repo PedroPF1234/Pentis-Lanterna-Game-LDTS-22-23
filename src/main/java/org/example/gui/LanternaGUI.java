@@ -23,12 +23,9 @@ public class LanternaGUI implements GUI {
 
     private final Screen screen;
 
-    public LanternaGUI(Screen screen) {
-        this.screen = screen;
-    }
-
-    public LanternaGUI(int width, int height) throws IOException {
-        Terminal terminal = createTerminal(width, height);
+    public LanternaGUI(int width, int height) throws IOException, FontFormatException {
+        AWTTerminalFontConfiguration fontConfig = loadFont();
+        Terminal terminal = createTerminal(width, height, fontConfig);
         this.screen = createScreen(terminal);
     }
 
@@ -46,26 +43,27 @@ public class LanternaGUI implements GUI {
         return screen;
     }
 
-    private Terminal createTerminal(int width, int height) throws IOException {
+    private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfiguration) throws IOException {
         TerminalSize terminalSize = new TerminalSize(width, height);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize)
-                .setTerminalEmulatorTitle("Pentis");
-        terminalFactory.setForceTextTerminal(true);
-        //terminalFactory.setTerminalEmulatorFontConfiguration(fontConfiguration);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setTerminalEmulatorTitle("Pentis")
+                .setInitialTerminalSize(terminalSize);
+        terminalFactory.setForceAWTOverSwing(true);
+        terminalFactory.setTerminalEmulatorFontConfiguration(fontConfiguration);
 
         return terminalFactory.createTerminal();
     }
 
-    /*public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException {
-        //Font font = Font.createFont(Font.TRUETYPE_FONT, );
+    public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException {
+        File fontFile = new File("src/main/resources/font/square.ttf");
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 30);
         return AWTTerminalFontConfiguration.newInstance(loadedFont);
     }
-    */
+
 
     @Override
     public ACTION getNextAction() throws IOException {
@@ -93,7 +91,7 @@ public class LanternaGUI implements GUI {
 
         TextGraphics tg = screen.newTextGraphics();
         tg.setBackgroundColor(TextColor.Factory.fromString(blockColour));
-        tg.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(2, 1), ' ');
+        tg.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
     }
 
     @Override

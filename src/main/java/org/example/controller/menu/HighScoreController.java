@@ -7,6 +7,9 @@ import org.example.controller.Controller;
 import org.example.gui.GUI;
 import org.example.model.menu.HighScore;
 import org.example.model.menu.Menu;
+import org.example.model.menu.Score.Score;
+import org.example.model.menu.Score.ScoreList;
+import org.example.model.menu.Score.ScoreWriter;
 import org.example.state.menu.MenuState;
 
 import java.io.IOException;
@@ -21,7 +24,6 @@ public class HighScoreController extends Controller<HighScore> {
         if (getModel().isFromGameOver()) {
             game.getGui().clear();
             while (true) {
-                //game.getState().getViewer().draw(game.getGui());
                 game.getState().getViewer().drawEntities(game.getGui());
                 game.getGui().refresh();
                 KeyStroke keyStroke = game.getGui().getScreen().pollInput();
@@ -48,7 +50,11 @@ public class HighScoreController extends Controller<HighScore> {
                 }
                 if (keyStroke.getKeyType() == KeyType.Enter) {
                     getModel().userPromptFinished();
-                    //Method call to add to file of highscores.
+                    Score score = new Score(getModel().getLevel(), getModel().getScore(), getModel().nameToString());
+                    ScoreList scoreList = new ScoreList();
+                    scoreList.addScore(score);
+                    ScoreWriter scoreWriter = new ScoreWriter();
+                    scoreWriter.writeInFile(scoreList);
                     break;
                 }
                 Thread.sleep(1000/game.getFPS());
