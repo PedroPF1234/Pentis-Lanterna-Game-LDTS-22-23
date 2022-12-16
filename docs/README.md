@@ -1,4 +1,4 @@
-## LPOO_1608 - Pentis
+## LDTS_1608 - Pentis
 
 Following up on one of the most successful video games in all history, Pentis surges forward to claim its own spot 
 along its small brother Tetris as one of the greatest of all time.
@@ -22,17 +22,18 @@ be controlled.
   the floor.
 - **Next Shapes** - A visual hint letting the player know what the next 2 playable shapes will look like.
 - **Shape Rotation** - By pressing the Arrow-Up key, the shape rotates 90º clockwise.
+- **Points Mechanic** - The player is awarded points every time they clear a line or push down a Shape,
+  increasing in value the longer the player has survived.
+- **Level counter** - After a player is awarded a certain amount of points, their in-game level is increased, along
+  with the game's difficulty.
+- **Difficulty Increase** - When a player rises in level, so will the difficulty of the game, meaning the shapes takes
+  less time to fall, leaving the player with less time to think.
+- **Shape-Shifting** - The player has the chance to switch the shape they're controlling once every round.
+
 ### PLANNED FEATURES
 
-- **Points Mechanic** - The player will be awarded points every time they clear a line, "survive" another round, 
-increasing in value the longer the player has survived.
-- **Level counter** - After a player is awarded a certain amount of points, their in-game level is increased, along 
-with the game's difficulty.
-- **Difficulty Increase** - When a player rises in level, so will the difficulty of the game, meaning the shapes takes
-less time to fall, leaving the player with less time to think.
 - **HighScore Mechanic** - A tab in the Main Menu where you can see the highest scorer 
 - **File To Save HighScore** - A file that saves the current highscores.
-- **Shape-Shifting** - The player will have the chance to switch the shape they're controlling once every round.
 
 ### DESIGN
 

@@ -9,7 +9,7 @@ public class Menu {
     private int currentSelection = 0;
 
     public Menu() {
-        this.selections = Arrays.asList("Start", "HighScores", "Exit");
+        this.selections = Arrays.asList("Start", "Instructions", "HighScores", "Exit");
     }
 
     public void nextSelection() {
@@ -34,11 +34,19 @@ public class Menu {
     }
 
     public boolean isSelectedExit() {
-        return isSelected(this.selections.size() - 1);
+        return isSelected(selections.size()-1);
     }
 
     public boolean isSelectedStart() {
         return isSelected(0);
+    }
+
+    public boolean isSelectedHighscore() {
+        return isSelected(2);
+    }
+
+    public boolean isSelectedInstructions() {
+        return isSelected(1);
     }
 
     public int getNumberSelections() {

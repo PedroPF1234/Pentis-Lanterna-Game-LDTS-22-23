@@ -1,7 +1,7 @@
 package org.example.controller.game;
 
 import org.example.MainGame;
-import org.example.gamestate.MenuState;
+import org.example.state.menu.MenuState;
 import org.example.gui.GUI;
 import org.example.model.game.window.Window;
 import org.example.model.menu.Menu;
@@ -15,7 +15,6 @@ public class WindowController extends GameController{
     public WindowController(Window window) {
         super(window);
 
-        //set up shape controller.
         this.shapeController = new ShapeController(window);
     }
 

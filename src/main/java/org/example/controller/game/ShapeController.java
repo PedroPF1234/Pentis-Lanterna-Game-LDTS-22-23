@@ -1,7 +1,7 @@
 package org.example.controller.game;
 
 import org.example.MainGame;
-import org.example.gamestate.MenuState;
+import org.example.state.menu.MenuState;
 import org.example.gui.GUI;
 import org.example.model.Position;
 import org.example.model.game.entities.Block;
@@ -71,20 +71,21 @@ public class ShapeController extends GameController{
         }
     }
 
-    private boolean pushShapeDown() {
+    private boolean pushShapeDown(boolean twice) {
         for (Block block : getModel().getPlayingShape().getBlocks()) {
             if (getModel().collisionImminent(block.getPosition(), "down")) {
                 return true;
             }
         }
         getModel().getPlayingShape().pushShapeDown();
-        getModel().setScore(getModel().getScore()+1);
-        getModel().setLevel(getModel().getScore()/500);
+        if (twice) getModel().setScore(getModel().getScore()+2);
+        else getModel().setScore(getModel().getScore()+1);
+        getModel().setLevel(getModel().getScore()/5000 + ((500 * ((getModel().getLevel()+5)/5)) * getModel().getLevel()));
         return false;
     }
 
     private void pushShapeFullDown() {
-        if (!pushShapeDown()) {
+        if (!pushShapeDown(true)) {
             pushShapeFullDown();
         }
     }
@@ -94,8 +95,9 @@ public class ShapeController extends GameController{
         if (action == GUI.ACTION.LEFT) moveShapeLeft();
         if (action == GUI.ACTION.RIGHT) moveShapeRight();
         if (action == GUI.ACTION.ROTATE) rotateShape();
-        if (action == GUI.ACTION.DOWN) pushShapeDown();
+        if (action == GUI.ACTION.DOWN) pushShapeDown(false);
         if (action == GUI.ACTION.FULL_DOWN) pushShapeFullDown();
+        if (action == GUI.ACTION.SHAPE_SHIFT && !getModel().getPlayingShape().hasShifted()) getModel().getPlayingShape().shifted();
         if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
     }
 }

@@ -1,10 +1,8 @@
 package org.example.model.game.window;
 
-import org.example.gamestate.MenuState;
 import org.example.model.Position;
 import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
-import org.example.model.menu.Menu;
 
 import java.util.List;
 
@@ -111,8 +109,7 @@ public class Window {
             cleanLine(filledLineCheck());
             numberOfLineCleared++;
         }
-        score += ((100 * numberOfLineCleared) + (pow(2, numberOfLineCleared - 1)*(10*numberOfLineCleared - 1)));
-        level = score / 500;
+        score += ((100 * numberOfLineCleared * getLevel()) + (pow(2, numberOfLineCleared - 1)*(10*numberOfLineCleared - 1)));
     }
 
     private boolean losingConditionCheck(Shape shape) {

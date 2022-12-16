@@ -1,5 +1,6 @@
-package org.example.gamestate;
+package org.example.state.menu;
 
+import org.example.state.State;
 import org.example.viewer.menu.MenuViewer;
 import org.example.viewer.Viewer;
 import org.example.controller.Controller;

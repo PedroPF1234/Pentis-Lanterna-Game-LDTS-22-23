@@ -1,16 +1,24 @@
 package org.example.model.menu;
 
 
- public class HighScore {
+import java.util.ArrayList;
+import java.util.List;
 
+public class HighScore {
+
+     private boolean fromGameOver;
      private int score, level;
-     private String name;
+     private List<Character> name = new ArrayList<>();
+
 
      //The constructor
-     public HighScore(int s, int l, String n) {
-         score = s;
-         setLevel(l);
-         setName(n);
+     public HighScore(int score, int level, boolean fromGameOver) {
+        this.score = score;
+        this.level = level;
+        this.fromGameOver = fromGameOver;
+        this.name.add(' ');
+        this.name.add(' ');
+        this.name.add(' ');
      }
 
      //The setters and getters
@@ -30,14 +38,20 @@ package org.example.model.menu;
          return level;
      }
 
-     public void setName(String name) {
-         this.name = name;
-     }
 
-     public String getName() {
+     public List<Character> getName() {
          return name;
      }
 
+     public boolean isFromGameOver() {
+         return fromGameOver;
+     }
+
+     public void userPromptFinished() {
+         this.fromGameOver = false;
+     }
+
+     /*
      //Decides whether this HighScore is greater than, less than, or equal to the argument
      public int compareTo(HighScore h) {
         // return new Integer(this.score).compareTo(h.score);
@@ -67,5 +81,6 @@ package org.example.model.menu;
              }
          }
      }
+     */
  }
 

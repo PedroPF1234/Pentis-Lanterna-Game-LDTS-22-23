@@ -7,37 +7,38 @@ import java.util.Random;
 public class Shape extends Block{
     enum SHAPE {F, I, L, S, P, T, U, V, W, X, Y, Z, FM, LM, SM, PM, YM, ZM, NONE}
     private List<Block> blocks;
+    private boolean hasShifted;
     private int rotation = 0;
-    private final  SHAPE selectedShape;
-    private final String blockColour;
+    private SHAPE selectedShape;
+    private String blockColour;
 
     public Shape(int x, int y) {
         super(x,y);
-        selectedShape = SHAPE.I;
+        selectedShape = getNextShape();
         this.blocks = constructShape(selectedShape);
         this.blockColour = getColourOfShape(selectedShape);
 
     }
 
     private String getColourOfShape(SHAPE selectedShape) {
-        if (selectedShape == SHAPE.F) return "#8B0000";
-        if (selectedShape == SHAPE.I) return "#FFA07A";
-        if (selectedShape == SHAPE.L) return "#FFC0CB";
-        if (selectedShape == SHAPE.S) return "#FF8C00";
-        if (selectedShape == SHAPE.P) return "#FFFF00";
-        if (selectedShape == SHAPE.T) return "#BDB76B";
-        if (selectedShape == SHAPE.U) return "#663399";
-        if (selectedShape == SHAPE.V) return "#191970";
-        if (selectedShape == SHAPE.W) return "#8B4513";
-        if (selectedShape == SHAPE.X) return "#4682B4";
-        if (selectedShape == SHAPE.Y) return "#EE82EE";
-        if (selectedShape == SHAPE.Z) return "#00FF00";
-        if (selectedShape == SHAPE.FM) return "#DC143C";
-        if (selectedShape == SHAPE.LM) return "#FF1493";
-        if (selectedShape == SHAPE.SM) return "#FF4500";
-        if (selectedShape == SHAPE.PM) return "#FAFAD2";
-        if (selectedShape == SHAPE.YM) return "#FF00FF";
-        if (selectedShape == SHAPE.ZM) return "#90EE90";
+        if (selectedShape == SHAPE.F) return "#52595D"; // Cinza Ferro
+        if (selectedShape == SHAPE.I) return "#E38AAE"; // Rosa Cadillac
+        if (selectedShape == SHAPE.L) return "#7FFFD4"; // Verde Água
+        if (selectedShape == SHAPE.S) return "#F5E216"; // Amarelo Banana
+        if (selectedShape == SHAPE.P) return "#C58917"; // Canela
+        if (selectedShape == SHAPE.T) return "#123456"; // Azul Marinho
+        if (selectedShape == SHAPE.U) return "#AF9B60"; // Amarelo Bala
+        if (selectedShape == SHAPE.V) return "#49413F"; // Carvão
+        if (selectedShape == SHAPE.W) return "#F70D1A"; // Vermelho Ferrari
+        if (selectedShape == SHAPE.X) return "#2916F5"; // Azul Canário
+        if (selectedShape == SHAPE.Y) return "#F8B88B"; // Laranja Pastel
+        if (selectedShape == SHAPE.Z) return "#C38EC7"; // Roxo Dragão
+        if (selectedShape == SHAPE.FM) return "#C0C0C0"; // Prateado
+        if (selectedShape == SHAPE.LM) return "#033E3E"; // Verde Petróleo Escuro
+        if (selectedShape == SHAPE.SM) return "#EDDA74"; // Castanho Cartão
+        if (selectedShape == SHAPE.PM) return "#CD7F32"; // Bronze
+        if (selectedShape == SHAPE.YM) return "#5E5A80"; // Uva
+        if (selectedShape == SHAPE.ZM) return "#FFA07A"; // Salmão
         return null;
     }
 
@@ -552,4 +553,22 @@ public class Shape extends Block{
         else rotation++;
     }
 
+    public boolean hasShifted() {
+        return hasShifted;
+    }
+
+    public void shifted() {
+        SHAPE previousShape = this.selectedShape;
+        this.hasShifted = true;
+        while (this.selectedShape == previousShape) {
+            this.selectedShape = getNextShape();
+        }
+        this.blockColour = getColourOfShape(selectedShape);
+        updateShape();
+    }
+
+    public void setSelectedShapeForTest() {
+        selectedShape = SHAPE.I;
+        this.blockColour = getColourOfShape(selectedShape);
+    }
 }

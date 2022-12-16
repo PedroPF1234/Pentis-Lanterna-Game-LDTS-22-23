@@ -1,5 +1,6 @@
-package org.example.gamestate;
+package org.example.state.game;
 
+import org.example.state.State;
 import org.example.viewer.Viewer;
 import org.example.viewer.game.GameViewer;
 import org.example.controller.Controller;

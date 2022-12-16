@@ -16,6 +16,7 @@ import org.example.model.Position;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class LanternaGUI implements GUI {
@@ -31,6 +32,10 @@ public class LanternaGUI implements GUI {
         this.screen = createScreen(terminal);
     }
 
+    public Screen getScreen() {
+        return screen;
+    }
+
     private @NotNull Screen createScreen(Terminal terminal) throws IOException {
         Screen screen = new TerminalScreen(terminal);
 
@@ -43,10 +48,24 @@ public class LanternaGUI implements GUI {
 
     private Terminal createTerminal(int width, int height) throws IOException {
         TerminalSize terminalSize = new TerminalSize(width, height);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize)
+                .setTerminalEmulatorTitle("Pentis");
+        terminalFactory.setForceTextTerminal(true);
+        //terminalFactory.setTerminalEmulatorFontConfiguration(fontConfiguration);
 
         return terminalFactory.createTerminal();
     }
+
+    /*public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException {
+        //Font font = Font.createFont(Font.TRUETYPE_FONT, );
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(font);
+
+        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        return AWTTerminalFontConfiguration.newInstance(loadedFont);
+    }
+    */
 
     @Override
     public ACTION getNextAction() throws IOException {
@@ -60,6 +79,7 @@ public class LanternaGUI implements GUI {
         if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;
         if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
         if (keyStroke.getKeyType() == KeyType.ArrowLeft) return ACTION.LEFT;
+        if (keyStroke.getKeyType() == KeyType.Tab) return ACTION.SHAPE_SHIFT;
 
         if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == ' ') return ACTION.FULL_DOWN;
 

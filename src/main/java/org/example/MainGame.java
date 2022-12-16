@@ -1,7 +1,7 @@
 package org.example;
 
-import org.example.gamestate.State;
-import org.example.gamestate.MenuState;
+import org.example.state.State;
+import org.example.state.menu.MenuState;
 import org.example.gui.LanternaGUI;
 import org.example.model.menu.Menu;
 
@@ -12,13 +12,21 @@ public class MainGame {
     private LanternaGUI gui;
     private State state;
 
+    private final int FPS = 60 ;
+    public LanternaGUI getGui() {
+        return gui;
+    }
+
+    public State getState() {
+        return state;
+    }
 
     public MainGame() throws IOException {
         this.gui = new LanternaGUI(50, 27);
         this.state = new MenuState(new Menu());
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
        new MainGame().startGame();
     }
 
@@ -26,12 +34,14 @@ public class MainGame {
         this.state = state;
     }
 
+    public int getFPS() {
+        return FPS;
+    }
 
-    public void startGame() throws IOException {
-        final int FPS = 240 ;
+    public void startGame() throws IOException, InterruptedException {
         int frameTime = 1000/FPS;
 
-      while (this.state != null) {
+        while (this.state != null) {
 
             long startTime = System.currentTimeMillis();
 
