@@ -36,8 +36,12 @@ public class HighScoreViewer extends Viewer<HighScore> {
         gui.drawText(new Position(2, 4), "game over! it's time to save your score.", "#FFFFFF");
         gui.drawText(new Position(2, 8), "press esc if you wish to exit without saving.", "#FFFFFF");
         gui.drawText(new Position(2, 12), "once you're done, press enter", "#FFFFFF");
-        for (int i = 0; i < getModel().getName().size(); i++) {
-            gui.drawText(new Position(10 + i, 16), String.valueOf(getModel().getName().get(i)), "#FFFFFF");
+        gui.drawText(new Position(2, 16), "your tag: ", "#FFFFFF");
+        for (int i = 0; i < getModel().getName().length; i++) {
+            if (getModel().getCurrentSelection() == i) {
+                gui.drawTextChar(new Position(12 + i, 16), getModel().getName()[i], "#FFD700");
+            }
+            else gui.drawTextChar(new Position(12 + i, 16), getModel().getName()[i], "#FFFFFF");
         }
     }
 
@@ -61,14 +65,14 @@ public class HighScoreViewer extends Viewer<HighScore> {
             if (i == 0) {
                 gui .drawText(new Position(2, 4), "1st:", "#00FF00");
                 gui.drawText(new Position(7, 4),
-                        stringBuilder + ", Score:  " + scores.get(i).getScore()
-                        + ", Level: " + (scores.get(i).getLevel()+1), "#FFFFFF");
+                        stringBuilder + ", score:  " + scores.get(i).getScore()
+                        + ", level: " + (scores.get(i).getLevel()+1), "#FFFFFF");
             }
             else if (i == 1) {
                 gui .drawText(new Position(2, 6), "2nd:", "#FFFF00");
                 gui.drawText(new Position(7, 6),
-                        stringBuilder + ", Score:  " + scores.get(i).getScore()
-                                + ", Level: " + (scores.get(i).getLevel()+1), "#FFFFFF");
+                        stringBuilder + ", score:  " + scores.get(i).getScore()
+                                + ", level: " + (scores.get(i).getLevel()+1), "#FFFFFF");
             }
              else if (i == 2) {
                 gui .drawText(new Position(2, 8), "3rd:", "#FF0000");
@@ -79,8 +83,8 @@ public class HighScoreViewer extends Viewer<HighScore> {
              else {
                 gui .drawText(new Position(2, 4 + 2*i), (i+1) + "th:", "#FFFFFF");
                 gui.drawText(new Position(7, 4 + 2*i),
-                        stringBuilder + ", Score:  " + scores.get(i).getScore()
-                                + ", Level: " + (scores.get(i).getLevel()+1), "#FFFFFF");
+                        stringBuilder + ", score:  " + scores.get(i).getScore()
+                                + ", level: " + (scores.get(i).getLevel()+1), "#FFFFFF");
             }
         }
     }

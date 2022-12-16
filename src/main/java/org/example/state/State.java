@@ -56,7 +56,7 @@ public abstract class State<T> {
         viewer.draw(gui);
         if (getModel() instanceof Window && ((Window) getModel()).lostGame) {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

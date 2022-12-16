@@ -103,6 +103,14 @@ public class LanternaGUI implements GUI {
         tg.putString(position.getX(), position.getY(), text);
     }
 
+    public void drawTextChar(Position position, char charToDraw, String color) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.insert(0, charToDraw);
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setForegroundColor(TextColor.Factory.fromString(color));
+        tg.putString(position.getX(), position.getY(), String.valueOf(stringBuilder));
+    }
+
     @Override
     public void clear() {
         this.screen.clear();

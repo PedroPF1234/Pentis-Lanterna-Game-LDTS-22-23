@@ -2,13 +2,18 @@ package org.example.model.menu;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class HighScore {
 
      private boolean fromGameOver;
      private int score, level;
-     private List<Character> name = new ArrayList<>();
+     private char[] name = {'a', 'a', 'a'};
+
+    private final List<Integer> selections = Arrays.asList(0, 1, 2);
+
+    private int currentSelection = 0;
 
 
      //The constructor
@@ -16,9 +21,6 @@ public class HighScore {
         this.score = score;
         this.level = level;
         this.fromGameOver = fromGameOver;
-        this.name.add(' ');
-        this.name.add(' ');
-        this.name.add(' ');
      }
 
      public void setScore(int score) {
@@ -38,7 +40,7 @@ public class HighScore {
      }
 
 
-     public List<Character> getName() {
+     public char[] getName() {
          return name;
      }
 
@@ -50,20 +52,12 @@ public class HighScore {
          this.fromGameOver = false;
      }
 
-     public char[] nameToCharArray() {
-         boolean isNotNull = false;
-         char[] newName = new char[3];
-         for (int i = 0; i < 3; i++) {
-             if (name.get(i) != ' ') isNotNull = true;
-         }
-
-         if (isNotNull) {
-             for (int i = 0; i < 3; i++) {
-                 newName[i] = name.get(i);
-             }
-         }
-         else newName = new char[]{'#', '#', '#'};
-         return newName;
+    public int getCurrentSelection() {
+        return currentSelection;
     }
- }
+
+    public void setCurrentSelection(int currentSelection) {
+        this.currentSelection = currentSelection;
+    }
+}
 

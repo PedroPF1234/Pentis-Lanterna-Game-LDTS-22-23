@@ -23,42 +23,60 @@ public class HighScoreController extends Controller<HighScore> {
     @Override
     public void step(MainGame game, GUI.ACTION action, long time) throws IOException, InterruptedException {
         if (getModel().isFromGameOver()) {
-            game.getGui().clear();
-            while (true) {
-                game.getState().getViewer().drawEntities(game.getGui());
-                game.getGui().refresh();
-                KeyStroke keyStroke = game.getGui().getScreen().pollInput();
-                if (keyStroke == null) continue;
-                if (keyStroke.getKeyType() == KeyType.Character) {
-                    for (int i = 0; i < getModel().getName().size(); i++) {
-                        if (getModel().getName().get(i) == ' ') {
-                            getModel().getName().set(i, keyStroke.getCharacter());
-                            break;
-                        }
-                    }
+
+            if (action == GUI.ACTION.DOWN) {
+                char temp = getModel().getName()[getModel().getCurrentSelection()];
+                if (getModel().getName()[getModel().getCurrentSelection()] == 'z') {
+                    getModel().getName()[getModel().getCurrentSelection()] = 'A';
                 }
-                if (keyStroke.getKeyType() ==  KeyType.Backspace) {
-                    for (int i = getModel().getName().size() - 1; i >= 0; i--) {
-                        if (getModel().getName().get(i) != ' ') {
-                            getModel().getName().set(i, ' ');
-                            break;
-                        }
-                    }
+                else if (getModel().getName()[getModel().getCurrentSelection()] == 'Z') {
+                    getModel().getName()[getModel().getCurrentSelection()] = '0';
                 }
-                if (keyStroke.getKeyType() == KeyType.Escape) {
-                    game.setState(new MenuState(new Menu()));
-                    break;
+                else if (getModel().getName()[getModel().getCurrentSelection()] == '9') {
+                    getModel().getName()[getModel().getCurrentSelection()] = 'a';
                 }
-                if (keyStroke.getKeyType() == KeyType.Enter) {
-                    getModel().userPromptFinished();
-                    Score score = new Score(getModel().getLevel(), getModel().getScore(), getModel().nameToCharArray());
-                    ScoreList scoreList = new ScoreList();
-                    scoreList.addScore(score);
-                    ScoreWriter scoreWriter = new ScoreWriter();
-                    scoreWriter.writeInFile(scoreList);
-                    break;
+                else  {
+                    temp++;
+                    getModel().getName()[getModel().getCurrentSelection()] = temp;
                 }
-                Thread.sleep(1000/game.getFPS());
+            } //Passar a letra
+            if (action == GUI.ACTION.ROTATE) {
+                char temp = getModel().getName()[getModel().getCurrentSelection()];
+                if (getModel().getName()[getModel().getCurrentSelection()] == 'A') {
+                    getModel().getName()[getModel().getCurrentSelection()] = 'z';
+                }
+                else if (getModel().getName()[getModel().getCurrentSelection()] == '0') {
+                    getModel().getName()[getModel().getCurrentSelection()] = 'Z';
+                }
+                else if (getModel().getName()[getModel().getCurrentSelection()] == 'a') {
+                    getModel().getName()[getModel().getCurrentSelection()] = '9';
+                }
+                else  {
+                    temp--;
+                    getModel().getName()[getModel().getCurrentSelection()] = temp;
+                }
+            }
+            if (action == GUI.ACTION.LEFT) {
+                if (getModel().getCurrentSelection() == 0) {
+                    getModel().setCurrentSelection(getModel().getCurrentSelection() + 3);
+                }
+                getModel().setCurrentSelection(getModel().getCurrentSelection() - 1);
+            }
+            if (action == GUI.ACTION.RIGHT) {
+                if (getModel().getCurrentSelection() == 2) {
+                    getModel().setCurrentSelection(getModel().getCurrentSelection() - 3);
+                }
+                getModel().setCurrentSelection(getModel().getCurrentSelection() + 1);
+            }
+
+            if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
+            if (action == GUI.ACTION.SELECT) {
+                getModel().userPromptFinished();
+                Score score = new Score(getModel().getLevel(), getModel().getScore(), getModel().getName());
+                ScoreList scoreList = new ScoreList();
+                scoreList.addScore(score);
+                ScoreWriter scoreWriter = new ScoreWriter();
+                scoreWriter.writeInFile(scoreList);
             }
         }
         else {
