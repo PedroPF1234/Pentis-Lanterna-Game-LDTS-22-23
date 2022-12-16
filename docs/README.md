@@ -29,11 +29,11 @@ be controlled.
 - **Difficulty Increase** - When a player rises in level, so will the difficulty of the game, meaning the shapes takes
   less time to fall, leaving the player with less time to think.
 - **Shape-Shifting** - The player has the chance to switch the shape they're controlling once every round.
+- **HighScore Mechanic** - A tab in the Main Menu where you can see the highest scorer.
+- **File To Save HighScore** - A file that saves the current highscores.
 
 ### PLANNED FEATURES
 
-- **HighScore Mechanic** - A tab in the Main Menu where you can see the highest scorer 
-- **File To Save HighScore** - A file that saves the current highscores.
 
 ### DESIGN
 
