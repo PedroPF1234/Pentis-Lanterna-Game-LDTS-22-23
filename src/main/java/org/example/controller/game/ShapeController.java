@@ -129,7 +129,6 @@ public class ShapeController extends GameController{
             getModel().getPlayingShape().shifted();
             rotateShapeCollisionCheck(getModel().getPlayingShape().getPosition(), getModel().getPlayingShape());
         }
-        if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));
         if (action == GUI.ACTION.PAUSE && !getModel().isPaused()) getModel().pauseGame();
         else if (action == GUI.ACTION.PAUSE && getModel().isPaused()) getModel().unpauseGame();
     }

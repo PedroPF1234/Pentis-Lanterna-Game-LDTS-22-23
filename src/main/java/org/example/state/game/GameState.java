@@ -5,7 +5,7 @@ import org.example.state.State;
 import org.example.viewer.Viewer;
 import org.example.viewer.game.GameWindowViewer;
 import org.example.controller.Controller;
-import org.example.controller.game.WindowController;
+import org.example.controller.game.GameWindowController;
 
 public class GameState extends State<GameWindow> {
     public GameState(GameWindow gameWindow) {
@@ -19,6 +19,6 @@ public class GameState extends State<GameWindow> {
 
     @Override
     protected Controller<GameWindow> getController() {
-        return new WindowController(getModel());
+        return new GameWindowController(getModel());
     }
 }

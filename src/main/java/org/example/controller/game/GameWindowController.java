@@ -8,11 +8,11 @@ import org.example.model.menu.Menu;
 
 import java.io.IOException;
 
-public class WindowController extends GameController{
+public class GameWindowController extends GameController {
 
     private final ShapeController shapeController;
 
-    public WindowController(GameWindow gameWindow) {
+    public GameWindowController(GameWindow gameWindow) {
         super(gameWindow);
 
         this.shapeController = new ShapeController(gameWindow);
