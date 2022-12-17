@@ -6,9 +6,7 @@ import org.example.model.game.entities.Shape;
 
 import java.util.List;
 
-import static java.lang.Math.pow;
-
-public class Window {
+public class GameWindow {
     public boolean lostGame;
 
     private final int width;
@@ -24,7 +22,7 @@ public class Window {
 
     private List<Block> walls;
 
-    public Window(int width, int height) {
+    public GameWindow(int width, int height) {
         this.width = width;
         this.height = height;
     }

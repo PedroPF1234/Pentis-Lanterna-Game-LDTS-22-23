@@ -2,20 +2,19 @@ package org.example.model.game.window;
 
 import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
-import org.example.model.game.entities.Wall;
 
 import java.util.List;
 
-public abstract class WindowBuilder {
+public abstract class GameWindowBuilder {
     
-    public Window createWindow() {
-        Window window = new Window(getWidth(), getHeight());
+    public GameWindow createWindow() {
+        GameWindow gameWindow = new GameWindow(getWidth(), getHeight());
 
-        window.setShapes(createShapes());
-        window.setWall(createWalls());
+        gameWindow.setShapes(createShapes());
+        gameWindow.setWall(createWalls());
 
 
-        return window;
+        return gameWindow;
     }
 
     protected abstract List<Shape> createShapes();

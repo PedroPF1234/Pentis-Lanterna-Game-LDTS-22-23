@@ -13,7 +13,7 @@ public class HighScoreState extends State<HighScore> {
     }
 
     @Override
-    protected Viewer<HighScore> getPainter() {
+    protected Viewer<HighScore> getViewer() {
         return new HighScoreViewer(getModel());
     }
 

@@ -1,22 +1,27 @@
 package org.example.controller.game;
 
 import org.example.MainGame;
+import org.example.model.menu.HighScore;
+import org.example.state.menu.HighScoreState;
 import org.example.state.menu.MenuState;
 import org.example.gui.GUI;
 import org.example.model.Position;
 import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
-import org.example.model.game.window.Window;
+import org.example.model.game.window.GameWindow;
 import org.example.model.menu.Menu;
 
 import java.io.IOException;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.pow;
 
 public class ShapeController extends GameController{
-    public ShapeController(Window window) {
-        super(window);
+    public ShapeController(GameWindow gameWindow) {
+        super(gameWindow);
     }
+
+    private long timeSinceLastDown = System.currentTimeMillis();
 
     public void moveShapeRight() {
         for (Block block : getModel().getPlayingShape().getBlocks()) {
@@ -98,6 +103,23 @@ public class ShapeController extends GameController{
 
     @Override
     public void step(MainGame game, GUI.ACTION action, long time) throws IOException {
+        if (getModel().lostGame) {
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            game.setState(new HighScoreState(new HighScore(getModel().getScore(), getModel().getLevel(), true)));
+        }
+        if (time - timeSinceLastDown > 1000 * pow((0.90), getModel().getLevel()) && !getModel().isPaused()) {
+            timeSinceLastDown = System.currentTimeMillis();
+            for (Block block :getModel().getPlayingShape().getBlocks()) {
+                if (getModel().collisionImminent(block.getPosition(), "down")) {
+                    return;
+                }
+            }
+            getModel().getPlayingShape().pushShapeDown();
+        }
         if (action == GUI.ACTION.LEFT) moveShapeLeft();
         if (action == GUI.ACTION.RIGHT) moveShapeRight();
         if (action == GUI.ACTION.ROTATE) rotateShape();

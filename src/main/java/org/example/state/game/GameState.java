@@ -1,24 +1,24 @@
 package org.example.state.game;
 
+import org.example.model.game.window.GameWindow;
 import org.example.state.State;
 import org.example.viewer.Viewer;
-import org.example.viewer.game.GameViewer;
+import org.example.viewer.game.GameWindowViewer;
 import org.example.controller.Controller;
 import org.example.controller.game.WindowController;
-import org.example.model.game.window.Window;
 
-public class GameState extends State<Window> {
-    public GameState(Window window) {
-        super(window);
+public class GameState extends State<GameWindow> {
+    public GameState(GameWindow gameWindow) {
+        super(gameWindow);
     }
 
     @Override
-    protected Viewer<Window> getPainter() {
-        return new GameViewer(getModel());
+    protected Viewer<GameWindow> getViewer() {
+        return new GameWindowViewer(getModel());
     }
 
     @Override
-    protected Controller<Window> getController() {
+    protected Controller<GameWindow> getController() {
         return new WindowController(getModel());
     }
 }

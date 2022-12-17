@@ -7,7 +7,7 @@ import org.example.model.menu.Instructions;
 import org.example.state.game.GameState;
 import org.example.gui.GUI;
 
-import org.example.model.game.window.WindowBuilderLoader;
+import org.example.model.game.window.GameWindowBuilderLoader;
 import org.example.model.menu.Menu;
 import org.example.state.menu.HighScoreState;
 import org.example.state.menu.InstructionsState;
@@ -32,7 +32,7 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedStart()) game.setState(new GameState(new WindowBuilderLoader().createWindow()));
+                if (getModel().isSelectedStart()) game.setState(new GameState(new GameWindowBuilderLoader().createWindow()));
                 if (getModel().isSelectedHighscore()) game.setState(new HighScoreState(new HighScore(0, 0, false)));
                 if (getModel().isSelectedInstructions()) game.setState(new InstructionsState(new Instructions()));
         }

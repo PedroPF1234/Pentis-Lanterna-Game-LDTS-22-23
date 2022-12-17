@@ -1,9 +1,9 @@
 package org.example.controller.game;
 
 import org.example.MainGame;
+import org.example.model.game.window.GameWindow;
 import org.example.state.menu.MenuState;
 import org.example.gui.GUI;
-import org.example.model.game.window.Window;
 import org.example.model.menu.Menu;
 
 import java.io.IOException;
@@ -12,10 +12,10 @@ public class WindowController extends GameController{
 
     private final ShapeController shapeController;
 
-    public WindowController(Window window) {
-        super(window);
+    public WindowController(GameWindow gameWindow) {
+        super(gameWindow);
 
-        this.shapeController = new ShapeController(window);
+        this.shapeController = new ShapeController(gameWindow);
     }
 
     @Override

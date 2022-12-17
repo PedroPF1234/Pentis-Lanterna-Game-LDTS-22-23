@@ -14,7 +14,7 @@ public class InstructionsState extends State<Instructions> {
     }
 
     @Override
-    protected Viewer<Instructions> getPainter() {
+    protected Viewer<Instructions> getViewer() {
         return new InstructionsViewer(new Instructions());
     }
 

@@ -39,7 +39,7 @@ public class HighScoreController extends Controller<HighScore> {
                     temp++;
                     getModel().getName()[getModel().getCurrentSelection()] = temp;
                 }
-            } //Passar a letra
+            }
             if (action == GUI.ACTION.ROTATE) {
                 char temp = getModel().getName()[getModel().getCurrentSelection()];
                 if (getModel().getName()[getModel().getCurrentSelection()] == 'A') {

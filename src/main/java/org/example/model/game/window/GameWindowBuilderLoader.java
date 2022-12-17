@@ -7,7 +7,7 @@ import org.example.model.game.entities.Wall;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WindowBuilderLoader extends WindowBuilder{
+public class GameWindowBuilderLoader extends GameWindowBuilder {
 
     @Override
     protected List<Shape> createShapes() {

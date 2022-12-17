@@ -1,18 +1,18 @@
 package org.example.viewer.game;
 
 import org.example.model.Position;
+import org.example.model.game.window.GameWindow;
 import org.example.viewer.Viewer;
 import org.example.gui.GUI;
 import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
-import org.example.model.game.window.Window;
 
 import java.io.IOException;
 import java.util.List;
 
-public class GameViewer extends Viewer<Window> {
-    public GameViewer(Window window) {
-        super(window);
+public class GameWindowViewer extends Viewer<GameWindow> {
+    public GameWindowViewer(GameWindow gameWindow) {
+        super(gameWindow);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class MenuState extends State<Menu> {
     }
 
     @Override
-    protected Viewer<Menu> getPainter() {
+    protected Viewer<Menu> getViewer() {
         return new MenuViewer(getModel());
     }
 

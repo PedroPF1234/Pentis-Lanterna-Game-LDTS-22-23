@@ -18,7 +18,7 @@ public class InstructionsViewer extends Viewer<Instructions> {
     }
 
     @Override
-    public void drawEntities(GUI gui) throws IOException {
+    public void drawEntities(GUI gui) {
         ShapeViewer shapeViewer = new ShapeViewer();
         for (Shape shape : getModel().getShapeList()) {
             for (Block block : shape.getBlocks()) {

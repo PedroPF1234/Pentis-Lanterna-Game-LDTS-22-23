@@ -16,7 +16,7 @@ for LDTS 2022/23.
 start a new game, enter the HighScore Menu or to exit the game.
 - **Automatic Start** - As soon as the player hops into a new game, a shape is already drawn onto the screen, ready to
 be controlled.
-- **Window borders** - Implemented a "wall" for the game window which will serve as a collision detector so that
+- **Window borders** - Implemented a "wall" for the game gameWindow which will serve as a collision detector so that
   the shape the player is controlling doesn't go out of bounds.
 - **Collision Detector** - This allows the game to not let the shape go out of bounds or make it stop once it reaches
   the floor.

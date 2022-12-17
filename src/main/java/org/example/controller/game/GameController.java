@@ -1,14 +1,11 @@
 package org.example.controller.game;
 
-import org.example.MainGame;
 import org.example.controller.Controller;
-import org.example.gui.GUI;
-import org.example.model.game.window.Window;
+import org.example.model.game.window.GameWindow;
 
-import java.io.IOException;
-
-public abstract class GameController extends Controller<Window> {
-    public GameController(Window model) {
+public abstract class GameController extends Controller<GameWindow> {
+    public GameController(GameWindow model) {
         super(model);
     }
+
 }
