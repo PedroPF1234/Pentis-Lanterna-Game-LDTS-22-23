@@ -27,6 +27,14 @@ public class GameWindow {
         this.height = height;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public int getScore() {
         return score;
     }

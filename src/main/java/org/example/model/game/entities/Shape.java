@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Shape extends Block{
-    enum SHAPE {F, I, L, S, P, T, U, V, W, X, Y, Z, FM, LM, SM, PM, YM, ZM, NONE}
+    public enum SHAPE {F, I, L, S, P, T, U, V, W, X, Y, Z, FM, LM, SM, PM, YM, ZM, NONE}
     private List<Block> blocks;
     private boolean hasShifted;
     private int rotation = 0;
@@ -569,8 +569,12 @@ public class Shape extends Block{
         updateShape();
     }
 
-    public void setSelectedShapeForTest() {
-        selectedShape = SHAPE.I;
+    public SHAPE getSelectedShapeForTests() {
+        return selectedShape;
+    }
+
+    public void setSelectedShapeForTest(SHAPE someShape) {
+        selectedShape = someShape;
         this.blockColour = getColourOfShape(selectedShape);
     }
 }

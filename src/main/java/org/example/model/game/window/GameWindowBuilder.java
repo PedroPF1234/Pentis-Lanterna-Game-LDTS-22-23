@@ -24,6 +24,4 @@ public abstract class GameWindowBuilder {
     protected abstract int getWidth();
 
     protected abstract int getHeight();
-
-    //Create Walls
 }

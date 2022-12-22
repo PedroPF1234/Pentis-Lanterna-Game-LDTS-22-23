@@ -14,7 +14,7 @@ public class Instructions {
         shapeList.add(new Shape(40, 4));
         shapeList.get(1).rotateShape();
         for (Shape shape : shapeList) {
-            shape.setSelectedShapeForTest();
+            shape.setSelectedShapeForTest(Shape.SHAPE.I);
             shape.updateShape();
         }
     }
