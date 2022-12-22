@@ -21,8 +21,6 @@ public class ShapeController extends GameController{
         super(gameWindow);
     }
 
-    private long timeSinceLastDown = System.currentTimeMillis();
-
     public void moveShapeRight() {
         for (Block block : getModel().getPlayingShape().getBlocks()) {
             if (getModel().collisionImminent(block.getPosition(), "right") || getModel().isPaused()) {
@@ -88,7 +86,7 @@ public class ShapeController extends GameController{
         if (twice) getModel().setScore(getModel().getScore()+2);
         else getModel().setScore(getModel().getScore()+1);
         int previousLevel = getModel().getLevel();
-        getModel().setLevel(getModel().getScore()/(5000 + ((500 * ((getModel().getLevel()+5)/5)) * getModel().getLevel())));
+        getModel().setLevel(getModel().getScore()/(1500 + ((150 * ((getModel().getLevel()+5)/5)) * getModel().getLevel())));
         if (getModel().getLevel() < previousLevel) {
             getModel().setLevel(previousLevel);
         }
@@ -103,23 +101,6 @@ public class ShapeController extends GameController{
 
     @Override
     public void step(MainGame game, GUI.ACTION action, long time) throws IOException {
-        if (getModel().lostGame) {
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            game.setState(new HighScoreState(new HighScore(getModel().getScore(), getModel().getLevel(), true)));
-        }
-        if (time - timeSinceLastDown > 1000 * pow((0.90), getModel().getLevel()) && !getModel().isPaused()) {
-            timeSinceLastDown = System.currentTimeMillis();
-            for (Block block :getModel().getPlayingShape().getBlocks()) {
-                if (getModel().collisionImminent(block.getPosition(), "down")) {
-                    return;
-                }
-            }
-            getModel().getPlayingShape().pushShapeDown();
-        }
         if (action == GUI.ACTION.LEFT) moveShapeLeft();
         if (action == GUI.ACTION.RIGHT) moveShapeRight();
         if (action == GUI.ACTION.ROTATE) rotateShape();

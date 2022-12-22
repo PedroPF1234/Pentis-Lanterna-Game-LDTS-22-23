@@ -489,7 +489,9 @@ public class Shape extends Block{
     }
 
     public SHAPE getNextShape() {
+        Random seed = new Random();
         Random random = new Random();
+        random.setSeed(seed.nextLong());
         int randomShape = random.nextInt(18);
 
         if (randomShape == 0) return SHAPE.Z;

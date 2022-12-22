@@ -140,8 +140,8 @@ public class GameWindow {
                     break;
             }
         }
-        if ((this.score/(5000 + ((500 * ((this.level+5)/5)) * this.level))) >= this.level) {
-            this.level = (this.score / (5000 + ((500 * ((this.level + 5) / 5)) * this.level)));
+        if ((this.score/(1500 + ((150 * ((this.level+5)/5)) * this.level))) >= this.level) {
+            this.level = (this.score / (1500 + ((150 * ((this.level + 5) / 5)) * this.level)));
         }
     }
 
