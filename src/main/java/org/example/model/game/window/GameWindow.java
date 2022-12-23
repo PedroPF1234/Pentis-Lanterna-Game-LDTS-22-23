@@ -3,6 +3,7 @@ package org.example.model.game.window;
 import org.example.model.Position;
 import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
+import org.example.model.game.entities.Wall;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class GameWindow {
 
     private List<Shape> shapes;
 
-    private List<Block> walls;
+    private List<Wall> walls;
 
     public GameWindow(int width, int height) {
         this.width = width;
@@ -59,7 +60,7 @@ public class GameWindow {
         return shapes;
     }
 
-    public void setWall(List<Block> walls) {
+    public void setWall(List<Wall> walls) {
         this.walls = walls;
     }
 
@@ -67,7 +68,7 @@ public class GameWindow {
         return shapes.get(shapes.size() - 3);
     }
 
-    public List<Block> getWalls() {
+    public List<Wall> getWalls() {
         return walls;
     }
 
@@ -100,14 +101,14 @@ public class GameWindow {
 
         for (Block wall : walls) {
             if (wall.getPosition().getX() == position1.getX() && wall.getPosition().getY() == position1.getY()) {
-                if (wall.getPosition().getY() == 26 && !direction.equals("own")) nextPlayingShape();
+                if (wall.getPosition().getY() == 26 && !direction.equals("own")) getNextPlayingShape();
                 return true;
             }
         }
         for (int i = 0; i < shapes.size()-3; i++) {
             for (Block block : shapes.get(i).getBlocks()) {
                 if (block.getPosition().getX() == position1.getX() && block.getPosition().getY() == position1.getY()) {
-                    if (direction.equals("down")) nextPlayingShape();
+                    if (direction.equals("down")) getNextPlayingShape();
                     return true;
                 }
             }
@@ -115,7 +116,7 @@ public class GameWindow {
         return false;
     }
 
-    public void nextPlayingShape() {
+    public void getNextPlayingShape() {
         Shape to_add = new Shape(23, 11);
         shapes.get(shapes.size() - 1).setPosition(23, 5);
         shapes.get(shapes.size() - 2).setPosition(6, 4);
@@ -147,9 +148,7 @@ public class GameWindow {
                     score += 3000 * (getLevel() + 1);
                     break;
             }
-        }
-        if ((this.score/(1500 + ((150 * ((this.level+5)/5)) * this.level))) >= this.level) {
-            this.level = (this.score / (1500 + ((150 * ((this.level + 5) / 5)) * this.level)));
+            updateLevel();
         }
     }
 
@@ -199,6 +198,12 @@ public class GameWindow {
                     block.setPosition(block.getPosition().getX(), block.getPosition().getY() + 1);
                 }
             }
+        }
+    }
+
+    public void updateLevel() {
+        if ((this.score/(1500 + ((150 * ((this.level+5)/5)) * this.level))) >= this.level) {
+            this.level = (this.score / (1500 + ((150 * ((this.level + 5) / 5)) * this.level)));
         }
     }
 }

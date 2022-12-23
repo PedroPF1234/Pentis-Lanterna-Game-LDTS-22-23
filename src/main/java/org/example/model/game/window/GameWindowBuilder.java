@@ -1,7 +1,7 @@
 package org.example.model.game.window;
 
-import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
+import org.example.model.game.entities.Wall;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public abstract class GameWindowBuilder {
 
     protected abstract List<Shape> createShapes();
 
-    protected abstract List<Block> createWalls();
+    protected abstract List<Wall> createWalls();
 
     protected abstract int getWidth();
 

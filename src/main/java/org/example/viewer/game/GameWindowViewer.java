@@ -1,6 +1,7 @@
 package org.example.viewer.game;
 
 import org.example.model.Position;
+import org.example.model.game.entities.Wall;
 import org.example.model.game.window.GameWindow;
 import org.example.viewer.Viewer;
 import org.example.gui.GUI;
@@ -51,7 +52,7 @@ public class GameWindowViewer extends Viewer<GameWindow> {
         }
     }
 
-    private void drawWall(GUI gui, List<Block> walls, WallViewer wallViewer) {
+    private void drawWall(GUI gui, List<Wall> walls, WallViewer wallViewer) {
         for (Block block : walls) {
             drawBlock(gui, block, wallViewer, "#FFFFFF");
         }
@@ -66,7 +67,7 @@ public class GameWindowViewer extends Viewer<GameWindow> {
         }
     }
 
-    private <T extends BlockViewer> void drawBlock(GUI gui, Block block, T viewer, String blockColour) {
+    private <T extends BlockViewer<Block>> void drawBlock(GUI gui, Block block, T viewer, String blockColour) {
         viewer.draw(block, gui, blockColour);
     }
 }

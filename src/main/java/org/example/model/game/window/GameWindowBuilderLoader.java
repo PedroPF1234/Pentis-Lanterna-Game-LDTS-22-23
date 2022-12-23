@@ -20,8 +20,8 @@ public class GameWindowBuilderLoader extends GameWindowBuilder {
     }
 
     @Override
-    protected List<Block> createWalls() {
-        List<Block> wall = new ArrayList<>();
+    protected List<Wall> createWalls() {
+        List<Wall> wall = new ArrayList<>();
 
         for (int x = 0; x < 14; x++) {
             for (int y = 0; y < 27; y++) {

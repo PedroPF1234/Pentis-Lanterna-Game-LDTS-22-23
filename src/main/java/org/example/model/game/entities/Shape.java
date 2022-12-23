@@ -17,7 +17,6 @@ public class Shape extends Block{
         selectedShape = getNextShape();
         this.blocks = constructShape(selectedShape);
         this.blockColour = getColourOfShape(selectedShape);
-
     }
 
     private String getColourOfShape(SHAPE selectedShape) {
@@ -560,13 +559,15 @@ public class Shape extends Block{
     }
 
     public void shifted() {
-        SHAPE previousShape = this.selectedShape;
-        this.hasShifted = true;
-        while (this.selectedShape == previousShape) {
-            this.selectedShape = getNextShape();
+        if (!hasShifted) {
+            SHAPE previousShape = this.selectedShape;
+            this.hasShifted = true;
+            while (this.selectedShape == previousShape) {
+                this.selectedShape = getNextShape();
+            }
+            this.blockColour = getColourOfShape(selectedShape);
+            updateShape();
         }
-        this.blockColour = getColourOfShape(selectedShape);
-        updateShape();
     }
 
     public SHAPE getSelectedShapeForTests() {

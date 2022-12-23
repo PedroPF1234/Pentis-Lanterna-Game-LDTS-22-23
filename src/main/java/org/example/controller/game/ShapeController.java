@@ -1,20 +1,15 @@
 package org.example.controller.game;
 
 import org.example.MainGame;
-import org.example.model.menu.HighScore;
-import org.example.state.menu.HighScoreState;
-import org.example.state.menu.MenuState;
 import org.example.gui.GUI;
 import org.example.model.Position;
 import org.example.model.game.entities.Block;
 import org.example.model.game.entities.Shape;
 import org.example.model.game.window.GameWindow;
-import org.example.model.menu.Menu;
 
 import java.io.IOException;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.pow;
 
 public class ShapeController extends GameController{
     public ShapeController(GameWindow gameWindow) {
@@ -44,11 +39,11 @@ public class ShapeController extends GameController{
         if (!getModel().isPaused()) {
             getModel().getPlayingShape().rotateShape();
             getModel().getPlayingShape().updateShape();
-            rotateShapeCollisionCheck(originalPosition, getModel().getPlayingShape());
+            updatedShapeColisionCheck(originalPosition, getModel().getPlayingShape());
         }
     }
 
-    private void rotateShapeCollisionCheck(Position originalPosition, Shape shape) {
+    private void updatedShapeColisionCheck(Position originalPosition, Shape shape) {
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 5; i++) {
                 while (getModel().collisionImminent(shape.getBlocks().get(i).getPosition(), "own")) {
@@ -70,7 +65,7 @@ public class ShapeController extends GameController{
             if (getModel().collisionImminent(shape.getBlocks().get(i).getPosition(), "own")) {
                 shape.pushShapeUp();
                 Position position = new Position(originalPosition.getX(), originalPosition.getY());
-                rotateShapeCollisionCheck(position, shape);
+                updatedShapeColisionCheck(position, shape);
                 break;
             }
         }
@@ -85,11 +80,7 @@ public class ShapeController extends GameController{
         getModel().getPlayingShape().pushShapeDown();
         if (twice) getModel().setScore(getModel().getScore()+2);
         else getModel().setScore(getModel().getScore()+1);
-        int previousLevel = getModel().getLevel();
-        getModel().setLevel(getModel().getScore()/(1500 + ((150 * ((getModel().getLevel()+5)/5)) * getModel().getLevel())));
-        if (getModel().getLevel() < previousLevel) {
-            getModel().setLevel(previousLevel);
-        }
+        getModel().updateLevel();
         return false;
     }
 
@@ -106,9 +97,9 @@ public class ShapeController extends GameController{
         if (action == GUI.ACTION.ROTATE) rotateShape();
         if (action == GUI.ACTION.DOWN) pushShapeDown(false);
         if (action == GUI.ACTION.FULL_DOWN) pushShapeFullDown();
-        if (action == GUI.ACTION.SHAPE_SHIFT && !getModel().getPlayingShape().hasShifted()) {
+        if (action == GUI.ACTION.SHAPE_SHIFT) {
             getModel().getPlayingShape().shifted();
-            rotateShapeCollisionCheck(getModel().getPlayingShape().getPosition(), getModel().getPlayingShape());
+            updatedShapeColisionCheck(getModel().getPlayingShape().getPosition(), getModel().getPlayingShape());
         }
         if (action == GUI.ACTION.PAUSE && !getModel().isPaused()) getModel().pauseGame();
         else if (action == GUI.ACTION.PAUSE && getModel().isPaused()) getModel().unpauseGame();
