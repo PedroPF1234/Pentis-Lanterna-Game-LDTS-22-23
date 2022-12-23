@@ -1,0 +1,151 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > InstructionsViewer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.viewer.menu</a>
+</div>
+
+<h1>Coverage Summary for Class: InstructionsViewer (org.example.viewer.menu)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InstructionsViewer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (1/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    4.3%
+  </span>
+  <span class="absValue">
+    (1/23)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.viewer.menu;
+&nbsp;
+&nbsp;import org.example.gui.GUI;
+&nbsp;import org.example.model.Position;
+&nbsp;import org.example.model.game.entities.Block;
+&nbsp;import org.example.model.game.entities.Shape;
+&nbsp;import org.example.model.menu.Instructions;
+&nbsp;import org.example.model.menu.Menu;
+&nbsp;import org.example.viewer.Viewer;
+&nbsp;import org.example.viewer.game.BlockViewer;
+&nbsp;import org.example.viewer.game.ShapeViewer;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;public class InstructionsViewer extends Viewer&lt;Instructions&gt; {
+&nbsp;    public InstructionsViewer(Instructions model) {
+<b class="fc">&nbsp;        super(model);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawEntities(GUI gui) {
+<b class="nc">&nbsp;        ShapeViewer shapeViewer = new ShapeViewer();</b>
+<b class="nc">&nbsp;        for (Shape shape : getModel().getShapeList()) {</b>
+<b class="nc">&nbsp;            for (Block block : shape.getBlocks()) {</b>
+<b class="nc">&nbsp;                drawBlock(gui, block, shapeViewer, shape.getBlockColour());</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(33, 4), &quot;-&gt;&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 3), &quot;press arrow_up&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 4), &quot;to rotate shape&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 8), &quot;press arrow_right to push the shape right.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 9), &quot;press arrow_left to push the shape left.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 10), &quot;press arrow_down to push the shape down.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 11), &quot;exactly one block. alternatively, press&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 12), &quot;space_bar to push the shape all the way down.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 14), &quot;press tab to shape shift, also know as,&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 15), &quot;getting a new random shape to play with.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 16), &quot;the shape shift ability can only be used&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 17), &quot;once per round.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 19), &quot;press p to pause while in game.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 21), &quot;press esc to return to the menu at any&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 22), &quot;instance of the game.&quot;, &quot;#FFFFFF&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private &lt;T extends BlockViewer&lt;Block&gt;&gt; void drawBlock(GUI gui, Block block, T viewer, String blockColour) {
+<b class="nc">&nbsp;        viewer.draw(block, gui, blockColour);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 22:47</div>
+</div>
+</body>
+</html>

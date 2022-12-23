@@ -1,0 +1,125 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ScoreWriter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.model.menu.Score</a>
+</div>
+
+<h1>Coverage Summary for Class: ScoreWriter (org.example.model.menu.Score)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ScoreWriter</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.model.menu.Score;
+&nbsp;
+&nbsp;import java.io.File;
+&nbsp;import java.io.FileOutputStream;
+&nbsp;import java.io.IOException;
+&nbsp;import java.io.ObjectOutputStream;
+&nbsp;
+&nbsp;public class ScoreWriter {
+&nbsp;    ObjectOutputStream objectOutputStream;
+&nbsp;    FileOutputStream fileOutputStream;
+&nbsp;
+<b class="nc">&nbsp;    public ScoreWriter() throws IOException {</b>
+<b class="nc">&nbsp;        fileOutputStream = new FileOutputStream(new File(&quot;src/main/resources/highscores/scores.txt&quot;));</b>
+<b class="nc">&nbsp;        objectOutputStream = new ObjectOutputStream(fileOutputStream);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void writeInFile(ScoreList scoreList) throws IOException {
+<b class="nc">&nbsp;        objectOutputStream.writeObject(scoreList);</b>
+<b class="nc">&nbsp;        objectOutputStream.close();</b>
+<b class="nc">&nbsp;        fileOutputStream.close();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 22:47</div>
+</div>
+</body>
+</html>

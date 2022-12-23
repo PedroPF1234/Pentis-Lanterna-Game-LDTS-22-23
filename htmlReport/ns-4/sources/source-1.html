@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HighScoreController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.controller.menu</a>
+</div>
+
+<h1>Coverage Summary for Class: HighScoreController (org.example.controller.menu)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HighScoreController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    2.3%
+  </span>
+  <span class="absValue">
+    (1/43)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.controller.menu;
+&nbsp;
+&nbsp;import com.googlecode.lanterna.input.KeyStroke;
+&nbsp;import com.googlecode.lanterna.input.KeyType;
+&nbsp;import org.example.MainGame;
+&nbsp;import org.example.controller.Controller;
+&nbsp;import org.example.gui.GUI;
+&nbsp;import org.example.model.menu.HighScore;
+&nbsp;import org.example.model.menu.Menu;
+&nbsp;import org.example.model.menu.Score.Score;
+&nbsp;import org.example.model.menu.Score.ScoreList;
+&nbsp;import org.example.model.menu.Score.ScoreWriter;
+&nbsp;import org.example.state.menu.MenuState;
+&nbsp;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;public class HighScoreController extends Controller&lt;HighScore&gt; {
+&nbsp;    public HighScoreController(HighScore model) {
+<b class="fc">&nbsp;        super(model);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void step(MainGame game, GUI.ACTION action, long time) throws IOException, InterruptedException {
+<b class="nc">&nbsp;        if (getModel().isFromGameOver()) {</b>
+&nbsp;
+<b class="nc">&nbsp;            if (action == GUI.ACTION.DOWN) {</b>
+<b class="nc">&nbsp;                char temp = getModel().getName()[getModel().getCurrentSelection()];</b>
+<b class="nc">&nbsp;                if (getModel().getName()[getModel().getCurrentSelection()] == &#39;z&#39;) {</b>
+<b class="nc">&nbsp;                    getModel().getName()[getModel().getCurrentSelection()] = &#39;A&#39;;</b>
+&nbsp;                }
+<b class="nc">&nbsp;                else if (getModel().getName()[getModel().getCurrentSelection()] == &#39;Z&#39;) {</b>
+<b class="nc">&nbsp;                    getModel().getName()[getModel().getCurrentSelection()] = &#39;0&#39;;</b>
+&nbsp;                }
+<b class="nc">&nbsp;                else if (getModel().getName()[getModel().getCurrentSelection()] == &#39;9&#39;) {</b>
+<b class="nc">&nbsp;                    getModel().getName()[getModel().getCurrentSelection()] = &#39;a&#39;;</b>
+&nbsp;                }
+&nbsp;                else  {
+<b class="nc">&nbsp;                    temp++;</b>
+<b class="nc">&nbsp;                    getModel().getName()[getModel().getCurrentSelection()] = temp;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;            if (action == GUI.ACTION.ROTATE) {</b>
+<b class="nc">&nbsp;                char temp = getModel().getName()[getModel().getCurrentSelection()];</b>
+<b class="nc">&nbsp;                if (getModel().getName()[getModel().getCurrentSelection()] == &#39;A&#39;) {</b>
+<b class="nc">&nbsp;                    getModel().getName()[getModel().getCurrentSelection()] = &#39;z&#39;;</b>
+&nbsp;                }
+<b class="nc">&nbsp;                else if (getModel().getName()[getModel().getCurrentSelection()] == &#39;0&#39;) {</b>
+<b class="nc">&nbsp;                    getModel().getName()[getModel().getCurrentSelection()] = &#39;Z&#39;;</b>
+&nbsp;                }
+<b class="nc">&nbsp;                else if (getModel().getName()[getModel().getCurrentSelection()] == &#39;a&#39;) {</b>
+<b class="nc">&nbsp;                    getModel().getName()[getModel().getCurrentSelection()] = &#39;9&#39;;</b>
+&nbsp;                }
+&nbsp;                else  {
+<b class="nc">&nbsp;                    temp--;</b>
+<b class="nc">&nbsp;                    getModel().getName()[getModel().getCurrentSelection()] = temp;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;            if (action == GUI.ACTION.LEFT) {</b>
+<b class="nc">&nbsp;                if (getModel().getCurrentSelection() == 0) {</b>
+<b class="nc">&nbsp;                    getModel().setCurrentSelection(getModel().getCurrentSelection() + 3);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                getModel().setCurrentSelection(getModel().getCurrentSelection() - 1);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (action == GUI.ACTION.RIGHT) {</b>
+<b class="nc">&nbsp;                if (getModel().getCurrentSelection() == 2) {</b>
+<b class="nc">&nbsp;                    getModel().setCurrentSelection(getModel().getCurrentSelection() - 3);</b>
+&nbsp;                }
+<b class="nc">&nbsp;                getModel().setCurrentSelection(getModel().getCurrentSelection() + 1);</b>
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));</b>
+<b class="nc">&nbsp;            if (action == GUI.ACTION.SELECT) {</b>
+<b class="nc">&nbsp;                getModel().userPromptFinished();</b>
+<b class="nc">&nbsp;                Score score = new Score(getModel().getLevel(), getModel().getScore(), getModel().getName());</b>
+<b class="nc">&nbsp;                ScoreList scoreList = new ScoreList();</b>
+<b class="nc">&nbsp;                scoreList.addScore(score);</b>
+<b class="nc">&nbsp;                ScoreWriter scoreWriter = new ScoreWriter();</b>
+<b class="nc">&nbsp;                scoreWriter.writeInFile(scoreList);</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            if (action == GUI.ACTION.QUIT) game.setState(new MenuState(new Menu()));</b>
+<b class="nc">&nbsp;            if (action == GUI.ACTION.DELETE) {</b>
+<b class="nc">&nbsp;                File file = new File(&quot;src/main/resources/highscores/scores.txt&quot;);</b>
+<b class="nc">&nbsp;                file.delete();</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 22:47</div>
+</div>
+</body>
+</html>

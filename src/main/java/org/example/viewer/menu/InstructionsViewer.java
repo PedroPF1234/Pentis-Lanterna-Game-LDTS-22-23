@@ -42,7 +42,7 @@ public class InstructionsViewer extends Viewer<Instructions> {
         gui.drawText(new Position(2, 22), "instance of the game.", "#FFFFFF");
     }
 
-    private <T extends BlockViewer> void drawBlock(GUI gui, Block block, T viewer, String blockColour) {
+    private <T extends BlockViewer<Block>> void drawBlock(GUI gui, Block block, T viewer, String blockColour) {
         viewer.draw(block, gui, blockColour);
     }
 }

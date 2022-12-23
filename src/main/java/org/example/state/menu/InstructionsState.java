@@ -15,11 +15,11 @@ public class InstructionsState extends State<Instructions> {
 
     @Override
     protected Viewer<Instructions> getViewer() {
-        return new InstructionsViewer(new Instructions());
+        return new InstructionsViewer(getModel());
     }
 
     @Override
     protected Controller<Instructions> getController() {
-        return new InstructionsController(new Instructions());
+        return new InstructionsController(getModel());
     }
 }

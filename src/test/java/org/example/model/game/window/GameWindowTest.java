@@ -94,4 +94,67 @@ class GameWindowTest {
         assertTrue(new Position(6,4).equals(gameWindow.getShapes().get(gameWindow.getShapes().size()-3).getPosition()));
         assertTrue(new Position(5,5).equals(gameWindow.getShapes().get(gameWindow.getShapes().size()-4).getPosition()));
     }
+
+    @Test
+    void levelFunctionality() {
+        assertEquals(1, gameWindow.getLevel()+1);
+        gameWindow.setScore(1500);
+        assertEquals(1, gameWindow.getLevel()+1);
+        gameWindow.updateLevel();
+        assertEquals(2, gameWindow.getLevel()+1);
+        gameWindow.setScore(5000);
+        assertEquals(2, gameWindow.getLevel()+1);
+        gameWindow.updateLevel();
+        assertEquals(4, gameWindow.getLevel()+1);
+    }
+
+    @Test
+    void cleanLinesFunctionality() {
+        List<Shape> shapeList = new ArrayList<>();
+        List<Wall> wallList = new ArrayList<>();
+        Shape shape1 = new Shape(3,5);
+        Shape shape2 = new Shape(8, 5);
+        Shape shape3 = new Shape(11, 5);
+        Shape shape4 = new Shape(12, 5);
+        Shape randomShape1 = new Shape(9, 4);
+        Shape randomShape2 = new Shape(9, 4);
+        shape1.setSelectedShapeForTest(Shape.SHAPE.I);
+        shape2.setSelectedShapeForTest(Shape.SHAPE.I);
+        shape3.setSelectedShapeForTest(Shape.SHAPE.I);
+        shape4.setSelectedShapeForTest(Shape.SHAPE.I);
+
+        shape1.rotateShape();
+        shape2.rotateShape();
+
+        shape1.updateShape();
+        shape2.updateShape();
+        shape3.updateShape();
+        shape4.updateShape();
+
+        shapeList.add(shape1);
+        shapeList.add(shape2);
+        shapeList.add(shape3);
+        shapeList.add(shape4);
+        shapeList.add(randomShape1);
+        shapeList.add(randomShape2);
+
+        Wall wall = new Wall(0, 5);
+
+        wallList.add(wall);
+
+        gameWindow.setShapes(shapeList);
+        gameWindow.setWall(wallList);
+
+        assertEquals(5, shape1.getBlocks().size());
+        assertEquals(5, shape2.getBlocks().size());
+        assertEquals(5, shape3.getBlocks().size());
+        assertEquals(5, shape4.getBlocks().size());
+
+        gameWindow.getNextPlayingShape();
+
+        assertEquals(0, shape1.getBlocks().size());
+        assertEquals(0, shape2.getBlocks().size());
+        assertEquals(4, shape3.getBlocks().size());
+        assertEquals(4, shape4.getBlocks().size());
+    }
 }

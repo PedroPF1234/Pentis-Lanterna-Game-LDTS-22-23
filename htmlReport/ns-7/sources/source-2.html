@@ -1,0 +1,710 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Shape</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.model.game.entities</a>
+</div>
+
+<h1>Coverage Summary for Class: Shape (org.example.model.game.entities)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Shape</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50.9%
+  </span>
+  <span class="absValue">
+    (230/452)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Shape$SHAPE</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    51%
+  </span>
+  <span class="absValue">
+    (231/453)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.model.game.entities;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;public class Shape extends Block{
+<b class="fc">&nbsp;    public enum SHAPE {F, I, L, S, P, T, U, V, W, X, Y, Z, FM, LM, SM, PM, YM, ZM, NONE}</b>
+&nbsp;    private List&lt;Block&gt; blocks;
+&nbsp;    private boolean hasShifted;
+<b class="fc">&nbsp;    private int rotation = 0;</b>
+&nbsp;    private SHAPE selectedShape;
+&nbsp;    private String blockColour;
+&nbsp;
+&nbsp;    public Shape(int x, int y) {
+<b class="fc">&nbsp;        super(x,y);</b>
+<b class="fc">&nbsp;        selectedShape = getNextShape();</b>
+<b class="fc">&nbsp;        this.blocks = constructShape(selectedShape);</b>
+<b class="fc">&nbsp;        this.blockColour = getColourOfShape(selectedShape);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private String getColourOfShape(SHAPE selectedShape) {
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.F) return &quot;#52595D&quot;; // Cinza Ferro</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.I) return &quot;#E38AAE&quot;; // Rosa Cadillac</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.L) return &quot;#7FFFD4&quot;; // Verde Água</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.S) return &quot;#F5E216&quot;; // Amarelo Banana</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.P) return &quot;#C58917&quot;; // Canela</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.T) return &quot;#123456&quot;; // Azul Marinho</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.U) return &quot;#AF9B60&quot;; // Amarelo Bala</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.V) return &quot;#49413F&quot;; // Carvão</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.W) return &quot;#F70D1A&quot;; // Vermelho Ferrari</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.X) return &quot;#2916F5&quot;; // Azul Canário</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.Y) return &quot;#F8B88B&quot;; // Laranja Pastel</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.Z) return &quot;#C38EC7&quot;; // Roxo Dragão</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.FM) return &quot;#C0C0C0&quot;; // Prateado</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.LM) return &quot;#033E3E&quot;; // Verde Petróleo Escuro</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.SM) return &quot;#EDDA74&quot;; // Castanho Cartão</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.PM) return &quot;#CD7F32&quot;; // Bronze</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.YM) return &quot;#5E5A80&quot;; // Uva</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.ZM) return &quot;#FFA07A&quot;; // Salmão</b>
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private List&lt;Block&gt; constructShape(SHAPE selectedShape) {
+<b class="fc">&nbsp;        List&lt;Block&gt; blocks = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.I &amp;&amp; (rotation == 0  || rotation == 2)) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.I &amp;&amp; (rotation == 1  || rotation == 3)) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.L &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.L &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.L &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.L &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.U &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.U &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.U &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.U &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.T &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.T &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.T &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.T &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.P &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.P &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.P &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.P &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.F &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.F &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.F &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.F &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.S &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.S &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.S &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.S &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.V &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.V &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.V &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.V &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.W &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.W &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.W &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.W &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.X) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.Y &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.Y &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.Y &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.Y &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.Z &amp;&amp; (rotation == 0 || rotation == 2)) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.Z &amp;&amp; (rotation == 1 || rotation == 3)) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.FM &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.FM &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.FM &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.FM &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.LM &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.LM &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.LM &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.LM &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.SM &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.SM &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.SM &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.SM &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.PM &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.PM &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.PM &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.PM &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.YM &amp;&amp; rotation == 0) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 2, this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.YM &amp;&amp; rotation == 1) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 2));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.YM &amp;&amp; rotation == 2) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 2, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.YM &amp;&amp; rotation == 3) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 2));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.ZM &amp;&amp; (rotation == 0 || rotation == 2)) {</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() - 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY() + 1));</b>
+<b class="fc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() + 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (selectedShape == SHAPE.ZM &amp;&amp; (rotation == 1 || rotation == 3)) {</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY() + 1));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() + 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX(), this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY()));</b>
+<b class="nc">&nbsp;            blocks.add(new Block(this.getPosition().getX() - 1, this.getPosition().getY() - 1));</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return blocks;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public SHAPE getNextShape() {
+<b class="fc">&nbsp;        Random seed = new Random();</b>
+<b class="fc">&nbsp;        Random random = new Random();</b>
+<b class="fc">&nbsp;        random.setSeed(seed.nextLong());</b>
+<b class="fc">&nbsp;        int randomShape = random.nextInt(18);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (randomShape == 0) return SHAPE.Z;</b>
+<b class="fc">&nbsp;        if (randomShape == 1) return SHAPE.F;</b>
+<b class="fc">&nbsp;        if (randomShape == 2) return SHAPE.I;</b>
+<b class="fc">&nbsp;        if (randomShape == 3) return SHAPE.L;</b>
+<b class="fc">&nbsp;        if (randomShape == 4) return SHAPE.S;</b>
+<b class="fc">&nbsp;        if (randomShape == 5) return SHAPE.P;</b>
+<b class="fc">&nbsp;        if (randomShape == 6) return SHAPE.T;</b>
+<b class="fc">&nbsp;        if (randomShape == 7) return SHAPE.U;</b>
+<b class="fc">&nbsp;        if (randomShape == 8) return SHAPE.V;</b>
+<b class="fc">&nbsp;        if (randomShape == 9) return SHAPE.W;</b>
+<b class="fc">&nbsp;        if (randomShape == 10) return SHAPE.X;</b>
+<b class="fc">&nbsp;        if (randomShape == 11) return SHAPE.Y;</b>
+<b class="fc">&nbsp;        if (randomShape == 12) return SHAPE.FM;</b>
+<b class="fc">&nbsp;        if (randomShape == 13) return SHAPE.LM;</b>
+<b class="fc">&nbsp;        if (randomShape == 14) return SHAPE.SM;</b>
+<b class="fc">&nbsp;        if (randomShape == 15) return SHAPE.ZM;</b>
+<b class="fc">&nbsp;        if (randomShape == 16) return SHAPE.YM;</b>
+<b class="fc">&nbsp;        if (randomShape == 17) return SHAPE.PM;</b>
+<b class="nc">&nbsp;        return SHAPE.NONE;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;Block&gt; getBlocks() {
+<b class="fc">&nbsp;        return blocks;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getBlockColour() {
+<b class="fc">&nbsp;        return blockColour;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getRotation() {
+<b class="fc">&nbsp;        return rotation;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void pushShapeRight() {
+<b class="fc">&nbsp;        this.setPosition(this.getPosition().getRight());</b>
+<b class="fc">&nbsp;        updateShape();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void  pushShapeLeft() {
+<b class="fc">&nbsp;        this.setPosition(this.getPosition().getLeft());</b>
+<b class="fc">&nbsp;        updateShape();</b>
+&nbsp;    }
+&nbsp;    public void pushShapeDown() {
+<b class="fc">&nbsp;        this.setPosition(this.getPosition().getX(), this.getPosition().getY() + 1);</b>
+<b class="fc">&nbsp;        updateShape();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void pushShapeUp() {
+<b class="fc">&nbsp;        this.setPosition(this.getPosition().getX(), this.getPosition().getY() - 1);</b>
+<b class="fc">&nbsp;        updateShape();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void updateShape() {
+<b class="fc">&nbsp;        this.blocks = constructShape(selectedShape);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void rotateShape() {
+<b class="fc">&nbsp;        if (rotation == 3) rotation = 0;</b>
+<b class="fc">&nbsp;        else rotation++;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean hasShifted() {
+<b class="fc">&nbsp;        return hasShifted;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void shifted() {
+<b class="fc">&nbsp;        if (!hasShifted) {</b>
+<b class="fc">&nbsp;            SHAPE previousShape = this.selectedShape;</b>
+<b class="fc">&nbsp;            this.hasShifted = true;</b>
+<b class="fc">&nbsp;            while (this.selectedShape == previousShape) {</b>
+<b class="fc">&nbsp;                this.selectedShape = getNextShape();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            this.blockColour = getColourOfShape(selectedShape);</b>
+<b class="fc">&nbsp;            updateShape();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public SHAPE getSelectedShapeForTests() {
+<b class="fc">&nbsp;        return selectedShape;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setSelectedShapeForTest(SHAPE someShape) {
+<b class="fc">&nbsp;        selectedShape = someShape;</b>
+<b class="fc">&nbsp;        this.blockColour = getColourOfShape(selectedShape);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 22:47</div>
+</div>
+</body>
+</html>

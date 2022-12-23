@@ -13,7 +13,7 @@ public class GameWindow {
     private final int width;
     private final int height;
 
-    private int score = 0;
+    private int score = 1501;
 
     private int level = 0;
 

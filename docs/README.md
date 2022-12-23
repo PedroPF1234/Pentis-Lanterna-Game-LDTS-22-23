@@ -32,16 +32,49 @@ be controlled.
 - **HighScore Mechanic** - A tab in the Main Menu where you can see the highest scorer.
 - **File To Save HighScore** - A file that saves the current highscores.
 
-### PLANNED FEATURES
+### THE GAME CONTROLLER AND VIEWER SHOULD BE DIFFERENT DEPENDING ON THE CURRENT GAMESTATE
+-**Problem in context**
 
+Seeing as this is a game with several sections, for example, a Menu or the Game instance, there was a problem with implementing
+the variance of the several functionalities within different sections. The controller was being shared by both the Menu 
+and the Game instance, as well as the Viewer. Also, because a Menu and the Game itself are different sections, flags were
+needed everywhere to check weather such functionality was supposed to be available to a certain section.
+Clearly violating the **Single Responsibility Principle** we had to think of a way to implement every feature without 
+this violation and the use of the **State** pattern allows for this.
 
-### DESIGN
+-**State Pattern**
+
+After applying this pattern to the game, we were able to differentiate several controller and viewers, initialized each
+by their respective **State**, allowing us to stop the aforementioned violation since now only one controller or viewer 
+is being utilized by a Menu or the Game Instance. There's no more "global" controller or viewer.
+
+The classes involving such pattern are in the following files:
+- [MainGame](../src/main/java/org/example/MainGame.java)
+- [MenuState](../src/main/java/org/example/state/menu/MenuState.java)
+- [HighScoreState](../src/main/java/org/example/state/menu/HighScoreState.java)
+- [InstructionsState](../src/main/java/org/example/state/menu/InstructionsState.java)
+- [GameState](../src/main/java/org/example/state/game/GameState.java)
+
+-**Consequences**
+
+-Several states now define their own controllers and viewers before anything else.
+-No more the need for several flags within the controller and viewer.
+-A significant increase in the number of classes but still manageable nonetheless.
 
 The UML pattern is the following:
-![UML class diagram](img.png)
+
+### SEVERAL CONDITIONAL STATMENTS IN EACH CONTROLLER
+In each controller, there are several conditional statements checking which action was performed by the user.
+This list of conditionals could potentially rise to a huge numbers if such different actions were possible within game.
+
+A way to resolve this issue would be to implement the **Command Pattern** to resolve this issue of many conditionals,
+all testing for the same thing.
 
 
 ### TESTING
+
+-Coverage report
+![Coverage Report](CoverageReport.png)
 
 ### SELF-EVALUATION
 

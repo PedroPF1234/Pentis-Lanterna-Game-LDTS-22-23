@@ -1,0 +1,379 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GameWindow</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.model.game.window</a>
+</div>
+
+<h1>Coverage Summary for Class: GameWindow (org.example.model.game.window)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameWindow</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80.4%
+  </span>
+  <span class="absValue">
+    (78/97)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$8SA6uwID</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$b4ELwyGI</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$b7CeMGy3</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$fmuYu61N</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$IlXqNiRd</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$JftWXLN0</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$KDPdd0We</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$n6QRuWpM</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$reio6iY3</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$tP7vuP9z</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$TUACW4qe</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$TVDNhmLY</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$TZjWo9TM</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$uPzFmtLj</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$wKWX1PfT</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$WSjPnujZ</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$xJyJEfXo</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$XUMEVjsZ</td>
+  </tr>
+  <tr>
+    <td class="name">GameWindow$MockitoMock$218248980$auxiliary$ZjPsZ9Kh</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80.4%
+  </span>
+  <span class="absValue">
+    (78/97)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.model.game.window;
+&nbsp;
+&nbsp;import org.example.model.Position;
+&nbsp;import org.example.model.game.entities.Block;
+&nbsp;import org.example.model.game.entities.Shape;
+&nbsp;import org.example.model.game.entities.Wall;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class GameWindow {
+&nbsp;    public boolean lostGame;
+&nbsp;
+&nbsp;    private final int width;
+&nbsp;    private final int height;
+&nbsp;
+<b class="fc">&nbsp;    private int score = 1501;</b>
+&nbsp;
+<b class="fc">&nbsp;    private int level = 0;</b>
+&nbsp;
+<b class="fc">&nbsp;    private boolean paused = false;</b>
+&nbsp;
+&nbsp;    private List&lt;Shape&gt; shapes;
+&nbsp;
+&nbsp;    private List&lt;Wall&gt; walls;
+&nbsp;
+<b class="fc">&nbsp;    public GameWindow(int width, int height) {</b>
+<b class="fc">&nbsp;        this.width = width;</b>
+<b class="fc">&nbsp;        this.height = height;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getWidth() {
+<b class="fc">&nbsp;        return width;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getHeight() {
+<b class="fc">&nbsp;        return height;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getScore() {
+<b class="fc">&nbsp;        return score;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setScore(int score) {
+<b class="fc">&nbsp;        this.score = score;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getLevel() {
+<b class="fc">&nbsp;        return level;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setLevel(int level) {
+<b class="fc">&nbsp;        this.level = level;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setShapes(List&lt;Shape&gt; shapes) {
+<b class="fc">&nbsp;        this.shapes = shapes;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;Shape&gt; getShapes() {
+<b class="fc">&nbsp;        return shapes;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setWall(List&lt;Wall&gt; walls) {
+<b class="fc">&nbsp;        this.walls = walls;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Shape getPlayingShape() {
+<b class="fc">&nbsp;        return shapes.get(shapes.size() - 3);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;Wall&gt; getWalls() {
+<b class="fc">&nbsp;        return walls;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean isPaused() {
+<b class="fc">&nbsp;        return paused;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void pauseGame() {
+<b class="fc">&nbsp;        this.paused = true;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void unpauseGame() {
+<b class="fc">&nbsp;        this.paused = false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean collisionImminent(Position position, String direction) {
+<b class="fc">&nbsp;        Position position1 = new Position(position.getX(), position.getY());</b>
+<b class="fc">&nbsp;        if (direction.equals(&quot;down&quot;)) {</b>
+<b class="fc">&nbsp;            position1.setY(position.getY()+1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (direction.equals(&quot;right&quot;)) {</b>
+<b class="nc">&nbsp;            position1.setX(position.getX()+1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (direction.equals(&quot;left&quot;)) {</b>
+<b class="nc">&nbsp;            position1.setX(position.getX()-1);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (direction.equals(&quot;own&quot;)) {</b>
+<b class="nc">&nbsp;            position1.setX(position.getX());</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        for (Block wall : walls) {</b>
+<b class="fc">&nbsp;            if (wall.getPosition().getX() == position1.getX() &amp;&amp; wall.getPosition().getY() == position1.getY()) {</b>
+<b class="fc">&nbsp;                if (wall.getPosition().getY() == 26 &amp;&amp; !direction.equals(&quot;own&quot;)) getNextPlayingShape();</b>
+<b class="fc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        for (int i = 0; i &lt; shapes.size()-3; i++) {</b>
+<b class="nc">&nbsp;            for (Block block : shapes.get(i).getBlocks()) {</b>
+<b class="nc">&nbsp;                if (block.getPosition().getX() == position1.getX() &amp;&amp; block.getPosition().getY() == position1.getY()) {</b>
+<b class="nc">&nbsp;                    if (direction.equals(&quot;down&quot;)) getNextPlayingShape();</b>
+<b class="nc">&nbsp;                    return true;</b>
+&nbsp;                }
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void getNextPlayingShape() {
+<b class="fc">&nbsp;        Shape to_add = new Shape(23, 11);</b>
+<b class="fc">&nbsp;        shapes.get(shapes.size() - 1).setPosition(23, 5);</b>
+<b class="fc">&nbsp;        shapes.get(shapes.size() - 2).setPosition(6, 4);</b>
+<b class="fc">&nbsp;        shapes.add(to_add);</b>
+<b class="fc">&nbsp;        for (int i = shapes.size() - 3; i &lt; shapes.size(); i++) {</b>
+<b class="fc">&nbsp;            shapes.get(i).updateShape();</b>
+&nbsp;        }
+<b class="fc">&nbsp;        lostGame = losingConditionCheck(getPlayingShape());</b>
+<b class="fc">&nbsp;        int numberOfLineCleared = 0;</b>
+<b class="fc">&nbsp;        while (filledLineCheck() != 0) {</b>
+<b class="fc">&nbsp;            cleanLine(filledLineCheck());</b>
+<b class="fc">&nbsp;            numberOfLineCleared++;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (numberOfLineCleared != 0) {</b>
+<b class="fc">&nbsp;            switch (numberOfLineCleared) {</b>
+&nbsp;                case (1):
+<b class="fc">&nbsp;                    score += 40 * (getLevel() + 1);</b>
+<b class="fc">&nbsp;                    break;</b>
+&nbsp;                case (2):
+<b class="nc">&nbsp;                    score += 100 * (getLevel() + 1);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case (3):
+<b class="nc">&nbsp;                    score += 300 * (getLevel() + 1);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case (4):
+<b class="nc">&nbsp;                    score += 1200 * (getLevel() + 1);</b>
+<b class="nc">&nbsp;                    break;</b>
+&nbsp;                case (5):
+<b class="nc">&nbsp;                    score += 3000 * (getLevel() + 1);</b>
+&nbsp;                    break;
+&nbsp;            }
+<b class="fc">&nbsp;            updateLevel();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean losingConditionCheck(Shape shape) {
+<b class="fc">&nbsp;        for (Block blockToSpawn : shape.getBlocks()) {</b>
+<b class="fc">&nbsp;            for (int i = 0; i &lt; shapes.size() - 3; i++) {</b>
+<b class="fc">&nbsp;                for (Block block : shapes.get(i).getBlocks()) {</b>
+<b class="fc">&nbsp;                    if (blockToSpawn.getPosition().equals(block.getPosition())) return true;</b>
+<b class="fc">&nbsp;                }</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private int filledLineCheck() {
+<b class="fc">&nbsp;        int count = 0;</b>
+<b class="fc">&nbsp;        for (int y = 1; y &lt; 26; y++) {</b>
+<b class="fc">&nbsp;            for (int x = 1; x &lt; 13; x++) {</b>
+<b class="fc">&nbsp;                for (int i = 0; i &lt; shapes.size() - 3; i++) {</b>
+<b class="fc">&nbsp;                    for (Block block : shapes.get(i).getBlocks()) {</b>
+<b class="fc">&nbsp;                        if (block.getPosition().getX() == x &amp;&amp; block.getPosition().getY() == y) {</b>
+<b class="fc">&nbsp;                            count++;</b>
+&nbsp;                        }
+<b class="fc">&nbsp;                    }</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;            if (count == 12) return y;</b>
+<b class="fc">&nbsp;            count = 0;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void cleanLine(int line) {
+<b class="fc">&nbsp;        for (Shape shape : shapes) {</b>
+<b class="fc">&nbsp;            int numBlocks = shape.getBlocks().size();</b>
+<b class="fc">&nbsp;            for (int i = 0; i &lt; numBlocks; i++) {</b>
+<b class="fc">&nbsp;                if (shape.getBlocks().get(i).getPosition().getY() == line) {</b>
+<b class="fc">&nbsp;                    shape.getBlocks().remove(shape.getBlocks().get(i));</b>
+<b class="fc">&nbsp;                    numBlocks--;</b>
+<b class="fc">&nbsp;                    i--;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        for (int i = 0; i &lt; shapes.size() - 3; i++) {</b>
+<b class="fc">&nbsp;            for (Block block : shapes.get(i).getBlocks()) {</b>
+<b class="fc">&nbsp;                if (block.getPosition().getY() &lt; line) {</b>
+<b class="fc">&nbsp;                    block.setPosition(block.getPosition().getX(), block.getPosition().getY() + 1);</b>
+&nbsp;                }
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void updateLevel() {
+<b class="fc">&nbsp;        if ((this.score/(1500 + ((150 * ((this.level+5)/5)) * this.level))) &gt;= this.level) {</b>
+<b class="fc">&nbsp;            this.level = (this.score / (1500 + ((150 * ((this.level + 5) / 5)) * this.level)));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 22:47</div>
+</div>
+</body>
+</html>

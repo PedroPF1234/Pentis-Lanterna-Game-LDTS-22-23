@@ -8,7 +8,6 @@ import org.example.controller.menu.MenuController;
 import org.example.model.menu.Menu;
 
 public class MenuState extends State<Menu> {
-
     public MenuState(Menu model) {
         super(model);
     }

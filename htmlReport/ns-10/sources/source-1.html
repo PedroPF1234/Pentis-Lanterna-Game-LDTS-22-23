@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HighScoreViewer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.viewer.menu</a>
+</div>
+
+<h1>Coverage Summary for Class: HighScoreViewer (org.example.viewer.menu)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HighScoreViewer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    2.2%
+  </span>
+  <span class="absValue">
+    (1/46)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.viewer.menu;
+&nbsp;
+&nbsp;import org.example.gui.GUI;
+&nbsp;import org.example.model.Position;
+&nbsp;import org.example.model.menu.HighScore;
+&nbsp;import org.example.model.menu.Score.Score;
+&nbsp;import org.example.model.menu.Score.ScoreList;
+&nbsp;import org.example.model.menu.Score.ScoreReader;
+&nbsp;import org.example.viewer.Viewer;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;
+&nbsp;public class HighScoreViewer extends Viewer&lt;HighScore&gt; {
+&nbsp;    public HighScoreViewer(HighScore model) {
+<b class="fc">&nbsp;        super(model);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawEntities(GUI gui) throws IOException {
+<b class="nc">&nbsp;        if (getModel().isFromGameOver()) {</b>
+<b class="nc">&nbsp;            drawUserPrompt(gui);</b>
+&nbsp;        }
+&nbsp;        else {
+&nbsp;            try {
+<b class="nc">&nbsp;                drawsHighscoreTable(gui);</b>
+<b class="nc">&nbsp;            } catch (ClassNotFoundException e) {</b>
+<b class="nc">&nbsp;                throw new RuntimeException(e);</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void drawUserPrompt(GUI gui) throws IOException {
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 4), &quot;game over! it&#39;s time to save your score.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 8), &quot;press esc if you wish to exit without saving.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 12), &quot;once you&#39;re done, press enter&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        gui.drawText(new Position(2, 16), &quot;your tag: &quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;        for (int i = 0; i &lt; getModel().getName().length; i++) {</b>
+<b class="nc">&nbsp;            if (getModel().getCurrentSelection() == i) {</b>
+<b class="nc">&nbsp;                gui.drawTextChar(new Position(12 + i, 16), getModel().getName()[i], &quot;#FFD700&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            else gui.drawTextChar(new Position(12 + i, 16), getModel().getName()[i], &quot;#FFFFFF&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void drawsHighscoreTable(GUI gui) throws IOException, ClassNotFoundException {
+<b class="nc">&nbsp;        ScoreList scoreList = new ScoreList();</b>
+<b class="nc">&nbsp;        List&lt;Score&gt; scores = scoreList.getScores();</b>
+<b class="nc">&nbsp;        if (scores.size() != 0) {</b>
+<b class="nc">&nbsp;            gui.drawText(new Position(2, 2), &quot;here are the top &quot; + scores.size() + &quot; players!&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;            gui.drawText(new Position(2, 25), &quot;press d to delete the highscores table.&quot;, &quot;#FFFFFF&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            gui.drawText(new Position(2, 2), &quot;no scores were found.&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;            gui.drawText(new Position(2, 4), &quot;go play and set a new highscore!&quot;, &quot;#FFFFFF&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        for (int i = 0; i &lt; scores.size(); i++) {</b>
+<b class="nc">&nbsp;            char[] temp = scores.get(i).getName();</b>
+<b class="nc">&nbsp;            StringBuilder stringBuilder = new StringBuilder();</b>
+<b class="nc">&nbsp;            for (int j = temp.length - 1; j &gt;= 0; j--) {</b>
+<b class="nc">&nbsp;                stringBuilder.insert(0, temp[j]);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (i == 0) {</b>
+<b class="nc">&nbsp;                gui .drawText(new Position(2, 4), &quot;1st:&quot;, &quot;#00FF00&quot;);</b>
+<b class="nc">&nbsp;                gui.drawText(new Position(7, 4),</b>
+<b class="nc">&nbsp;                        stringBuilder + &quot;, score:  &quot; + scores.get(i).getScore()</b>
+<b class="nc">&nbsp;                        + &quot;, level: &quot; + (scores.get(i).getLevel()+1), &quot;#FFFFFF&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            else if (i == 1) {</b>
+<b class="nc">&nbsp;                gui .drawText(new Position(2, 6), &quot;2nd:&quot;, &quot;#FFFF00&quot;);</b>
+<b class="nc">&nbsp;                gui.drawText(new Position(7, 6),</b>
+<b class="nc">&nbsp;                        stringBuilder + &quot;, score:  &quot; + scores.get(i).getScore()</b>
+<b class="nc">&nbsp;                                + &quot;, level: &quot; + (scores.get(i).getLevel()+1), &quot;#FFFFFF&quot;);</b>
+&nbsp;            }
+<b class="nc">&nbsp;             else if (i == 2) {</b>
+<b class="nc">&nbsp;                gui .drawText(new Position(2, 8), &quot;3rd:&quot;, &quot;#FF0000&quot;);</b>
+<b class="nc">&nbsp;                gui.drawText(new Position(7, 8),</b>
+<b class="nc">&nbsp;                        stringBuilder + &quot;, Score:  &quot; + scores.get(i).getScore()</b>
+<b class="nc">&nbsp;                                + &quot;, Level: &quot; + (scores.get(i).getLevel()+1), &quot;#FFFFFF&quot;);</b>
+&nbsp;            }
+&nbsp;             else {
+<b class="nc">&nbsp;                gui .drawText(new Position(2, 4 + 2*i), (i+1) + &quot;th:&quot;, &quot;#FFFFFF&quot;);</b>
+<b class="nc">&nbsp;                gui.drawText(new Position(7, 4 + 2*i),</b>
+<b class="nc">&nbsp;                        stringBuilder + &quot;, score:  &quot; + scores.get(i).getScore()</b>
+<b class="nc">&nbsp;                                + &quot;, level: &quot; + (scores.get(i).getLevel()+1), &quot;#FFFFFF&quot;);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 22:47</div>
+</div>
+</body>
+</html>

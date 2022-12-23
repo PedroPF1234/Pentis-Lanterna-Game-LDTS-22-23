@@ -1,0 +1,231 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LanternaGUI</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.gui</a>
+</div>
+
+<h1>Coverage Summary for Class: LanternaGUI (org.example.gui)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LanternaGUI</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/50)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.gui;
+&nbsp;
+&nbsp;import com.googlecode.lanterna.TerminalPosition;
+&nbsp;import com.googlecode.lanterna.TerminalSize;
+&nbsp;import com.googlecode.lanterna.TextColor;
+&nbsp;import com.googlecode.lanterna.graphics.TextGraphics;
+&nbsp;import com.googlecode.lanterna.gui2.GUIBackdrop;
+&nbsp;import com.googlecode.lanterna.input.KeyStroke;
+&nbsp;import com.googlecode.lanterna.input.KeyType;
+&nbsp;import com.googlecode.lanterna.screen.Screen;
+&nbsp;import com.googlecode.lanterna.screen.TerminalScreen;
+&nbsp;import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+&nbsp;import com.googlecode.lanterna.terminal.Terminal;
+&nbsp;import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+&nbsp;import org.example.model.Position;
+&nbsp;import org.jetbrains.annotations.NotNull;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;import java.io.File;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;public class LanternaGUI implements GUI {
+&nbsp;
+&nbsp;    private final Screen screen;
+&nbsp;
+<b class="nc">&nbsp;    public LanternaGUI(int width, int height) throws IOException, FontFormatException {</b>
+<b class="nc">&nbsp;        AWTTerminalFontConfiguration fontConfig = loadFont();</b>
+<b class="nc">&nbsp;        Terminal terminal = createTerminal(width, height, fontConfig);</b>
+<b class="nc">&nbsp;        this.screen = createScreen(terminal);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Screen getScreen() {
+<b class="nc">&nbsp;        return screen;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private @NotNull Screen createScreen(Terminal terminal) throws IOException {
+<b class="nc">&nbsp;        Screen screen = new TerminalScreen(terminal);</b>
+&nbsp;
+<b class="nc">&nbsp;        screen.setCursorPosition(null);</b>
+<b class="nc">&nbsp;        screen.startScreen();</b>
+<b class="nc">&nbsp;        screen.doResizeIfNecessary();</b>
+&nbsp;
+<b class="nc">&nbsp;        return screen;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfiguration) throws IOException {
+<b class="nc">&nbsp;        TerminalSize terminalSize = new TerminalSize(width, height);</b>
+<b class="nc">&nbsp;        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setTerminalEmulatorTitle(&quot;Pentis&quot;)</b>
+<b class="nc">&nbsp;                .setInitialTerminalSize(terminalSize);</b>
+<b class="nc">&nbsp;        terminalFactory.setForceAWTOverSwing(true);</b>
+<b class="nc">&nbsp;        terminalFactory.setTerminalEmulatorFontConfiguration(fontConfiguration);</b>
+&nbsp;
+<b class="nc">&nbsp;        return terminalFactory.createTerminal();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException {
+<b class="nc">&nbsp;        File fontFile = new File(&quot;src/main/resources/font/square.ttf&quot;);</b>
+<b class="nc">&nbsp;        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);</b>
+&nbsp;
+<b class="nc">&nbsp;        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();</b>
+<b class="nc">&nbsp;        ge.registerFont(font);</b>
+&nbsp;
+<b class="nc">&nbsp;        Font loadedFont = font.deriveFont(Font.PLAIN, 30);</b>
+<b class="nc">&nbsp;        return AWTTerminalFontConfiguration.newInstance(loadedFont);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public ACTION getNextAction() throws IOException {
+<b class="nc">&nbsp;        KeyStroke keyStroke = screen.pollInput();</b>
+<b class="nc">&nbsp;        if (keyStroke == null) return ACTION.NONE;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Escape) return ACTION.QUIT;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.ROTATE;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.ArrowLeft) return ACTION.LEFT;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Tab) return ACTION.SHAPE_SHIFT;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Character &amp;&amp; keyStroke.getCharacter() == &#39; &#39;) return ACTION.FULL_DOWN;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Character &amp;&amp; keyStroke.getCharacter() == &#39;d&#39;) return ACTION.DELETE;</b>
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Character &amp;&amp; keyStroke.getCharacter() == &#39;p&#39;) return ACTION.PAUSE;</b>
+&nbsp;
+<b class="nc">&nbsp;        if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.SELECT;</b>
+&nbsp;
+<b class="nc">&nbsp;        return ACTION.NONE;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawBlock(Position position, String blockColour) {
+&nbsp;
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        tg.setBackgroundColor(TextColor.Factory.fromString(blockColour));</b>
+<b class="nc">&nbsp;        tg.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), &#39; &#39;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void drawText(Position position, String text, String color) {
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        tg.setForegroundColor(TextColor.Factory.fromString(color));</b>
+<b class="nc">&nbsp;        tg.putString(position.getX(), position.getY(), text);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void drawTextChar(Position position, char charToDraw, String color) {
+<b class="nc">&nbsp;        StringBuilder stringBuilder = new StringBuilder();</b>
+<b class="nc">&nbsp;        stringBuilder.insert(0, charToDraw);</b>
+<b class="nc">&nbsp;        TextGraphics tg = screen.newTextGraphics();</b>
+<b class="nc">&nbsp;        tg.setForegroundColor(TextColor.Factory.fromString(color));</b>
+<b class="nc">&nbsp;        tg.putString(position.getX(), position.getY(), String.valueOf(stringBuilder));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void clear() {
+<b class="nc">&nbsp;        this.screen.clear();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void refresh() throws IOException {
+<b class="nc">&nbsp;        this.screen.refresh();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void close() throws IOException {
+<b class="nc">&nbsp;        this.screen.close();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 22:47</div>
+</div>
+</body>
+</html>

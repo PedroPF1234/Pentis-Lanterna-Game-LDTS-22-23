@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MenuController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.controller.menu</a>
+</div>
+
+<h1>Coverage Summary for Class: MenuController (org.example.controller.menu)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MenuController</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (1/10)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MenuController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (1/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    9.1%
+  </span>
+  <span class="absValue">
+    (1/11)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.controller.menu;
+&nbsp;
+&nbsp;import org.example.MainGame;
+&nbsp;import org.example.controller.Controller;
+&nbsp;import org.example.model.menu.HighScore;
+&nbsp;import org.example.model.menu.Instructions;
+&nbsp;import org.example.state.game.GameState;
+&nbsp;import org.example.gui.GUI;
+&nbsp;
+&nbsp;import org.example.model.game.window.GameWindowBuilderLoader;
+&nbsp;import org.example.model.menu.Menu;
+&nbsp;import org.example.state.menu.HighScoreState;
+&nbsp;import org.example.state.menu.InstructionsState;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;
+&nbsp;public class MenuController extends Controller&lt;Menu&gt; {
+&nbsp;
+&nbsp;
+&nbsp;    public MenuController(Menu menu) {
+<b class="fc">&nbsp;        super(menu);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void step(MainGame game, GUI.ACTION action, long time) throws IOException {
+<b class="nc">&nbsp;        switch (action) {</b>
+&nbsp;            case ROTATE:
+<b class="nc">&nbsp;                getModel().previousSelections();</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case DOWN:
+<b class="nc">&nbsp;                getModel().nextSelection();</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case SELECT:
+<b class="nc">&nbsp;                if (getModel().isSelectedExit()) game.setState(null);</b>
+<b class="nc">&nbsp;                if (getModel().isSelectedStart()) game.setState(new GameState(new GameWindowBuilderLoader().createWindow()));</b>
+<b class="nc">&nbsp;                if (getModel().isSelectedHighscore()) game.setState(new HighScoreState(new HighScore(0, 0, false)));</b>
+<b class="nc">&nbsp;                if (getModel().isSelectedInstructions()) game.setState(new InstructionsState(new Instructions()));</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-23 22:47</div>
+</div>
+</body>
+</html>
