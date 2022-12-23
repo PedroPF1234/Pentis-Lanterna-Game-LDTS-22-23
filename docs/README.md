@@ -48,6 +48,14 @@ After applying this pattern to the game, we were able to differentiate several c
 by their respective **State**, allowing us to stop the aforementioned violation since now only one controller or viewer 
 is being utilized by a Menu or the Game Instance. There's no more "global" controller or viewer.
 
+With the implemented pattern, this is how these patterns interact with the **MainGame** Class:
+
+![Example](StatesInteraction.png)
+
+An example of the interaction of the **MenuState** with its controller and viewer:
+
+![Example](InteractionMenuState.png)
+
 The classes involving such pattern are in the following files:
 - [MainGame](../src/main/java/org/example/MainGame.java)
 - [MenuState](../src/main/java/org/example/state/menu/MenuState.java)
@@ -61,7 +69,17 @@ The classes involving such pattern are in the following files:
 -No more the need for several flags within the controller and viewer.
 -A significant increase in the number of classes but still manageable nonetheless.
 
-The UML pattern is the following:
+### DESIGN
+
+This is how the many States interact with each controller and viewer, and how they connect back to the **MainGame**:
+
+![Example](imge.png)
+
+And this is the full UML implementation:
+
+![FullUML](FullUML.png)
+
+
 
 ### SEVERAL CONDITIONAL STATMENTS IN EACH CONTROLLER
 In each controller, there are several conditional statements checking which action was performed by the user.
@@ -75,6 +93,9 @@ all testing for the same thing.
 
 -Coverage report
 ![Coverage Report](CoverageReport.png)
+-Mutation Report
+For some reason, we were unable to get Pitest to work.
+Therefore, we could not get a Mutation Report
 
 ### SELF-EVALUATION
 
