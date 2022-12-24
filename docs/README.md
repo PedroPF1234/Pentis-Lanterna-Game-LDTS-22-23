@@ -66,7 +66,9 @@ The classes involving such pattern are in the following files:
 -**Consequences**
 
 -Several states now define their own controllers and viewers before anything else.
+
 -No more the need for several flags within the controller and viewer.
+
 -A significant increase in the number of classes but still manageable nonetheless.
 
 ### DESIGN
