@@ -94,7 +94,11 @@ all testing for the same thing.
 ### TESTING
 
 -Coverage report
+
+
 ![Coverage Report](CoverageReport.png)
+
+
 -Mutation Report
 For some reason, we were unable to get Pitest to work.
 Therefore, we could not get a Mutation Report
